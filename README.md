@@ -12,9 +12,13 @@
 6. ~~list ID 13 has height issue and showing background~~
 7. escape button to kick out of the text area box
 8. ~~Style on the p tags, is a bit large and out of~~
-
 9. Add counter for the tags that are placed in the document
 10. since it is an input, then may be able to set up some paras and have it return a specific color once the hash is entered.
+11. improve button designs for the counters
+12. Create a custom Hook on the logic functions
+
+
+
 
 ## Bonus points
 
