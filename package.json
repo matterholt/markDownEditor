@@ -1,21 +1,17 @@
 {
-  "name": "herokuDeploy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "md_editor",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild":" npm run build",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "next start",
+    "heroku-postbuld": "npm run build"
   },
-  "keywords": [],
-  "author": "MAtterholt",
-  "license": "ISC",
   "dependencies": {
-    "next": "^9.3.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "next": "9.3.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "showdown": "^1.9.1"
   }
 }
