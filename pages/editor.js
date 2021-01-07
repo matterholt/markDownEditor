@@ -6,6 +6,7 @@ import {CurrentDocProvider,useCurrentDocState} from "../context/DocPage-context"
 import Layout from "../components/general/Layout"
 
 import EditorDoc from "../components/editor/EditorDoc";
+import DocSheet from "../components/editor/DocSheet"
 import MkdownInput from "../components/editor/MkdownInput"
 import MkdownOut from "../components/editor/MkdownOut";
 
@@ -13,41 +14,37 @@ import MkdownOut from "../components/editor/MkdownOut";
 
 
 
-const DocSheet = ({ children }) => (
-  <div>
-    {children}
-    <style jsx>{`
-      div {
-        background-color: #eaeaea;
-        max-width: 75vw;
-        min-width:50%;
-        min-height: 100vh;
-        padding: 5px;
-        margin: 2px;
-        border-radius: 10px;
-      }
-    `}</style>
-  </div>
-);
+
 
 const Editor = () => {
+  const [mdPreviousLines, updateMdInputList] = useState([]);
+   const [mkdownInput, updateMkdownInput] = useState("");
 
-  const [mkdownInput, updateMkdownInput] = useState("");
   function convertInput(userInput) {
     let converter = new showdown.Converter(),
-      html = converter.makeHtml(userInput);
+    html = converter.makeHtml(userInput);
     updateMkdownInput(html);
   }
+
+  function newLineOfMarkdown(newline) {
+    updateMdInputList([...mdPreviousLines, newline]);
+  }
+  
+
+  React.useEffect(() => console.log(mdPreviousLines));
 
   const [isPrevOn, setIsPrevOn] = useState(false)
 
   return (
     <Layout>
       <CurrentDocProvider>
-
         <EditorDoc previewStatus={{ isPrevOn, setIsPrevOn }}>
           <DocSheet>
-            <MkdownInput mkdownConvert={convertInput} />
+            <MkdownInput
+              mkdownConvert={convertInput}
+              mkdownInput={mkdownInput}
+              newLineOfMarkdown={newLineOfMarkdown}
+            />
           </DocSheet>
           {isPrevOn ? (
             <DocSheet>

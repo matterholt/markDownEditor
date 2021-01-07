@@ -23,6 +23,7 @@ const MkdownOut = (props) => {
           padding: 5px;
           min-height: inherit;
           background-color: #333745;
+          white-space: pre-wrap;
         }
       `}</style>
     </div>
