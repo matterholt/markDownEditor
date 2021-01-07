@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 let showdown = require("showdown");
 
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import EditorActions from "../components/EditorActions";
-import EditorStats from "../components/EditorStats";
-import MdCompileLine from "../components/MdCompileLine";
-import NewEmptyDoc from "../components/NewEmptyDoc";
+import Header from "../components/general/Header";
+import Footer from "../components/general/Footer";
+import EditorActions from "../components/editor/EditorActions";
+import EditorStats from "../components/docDetail/EditorStats";
+import MdCompileLine from "../components/editor/MdCompileLine";
+import NewEmptyDoc from "../components/editor/NewEmptyDoc";
 
 function MkdownInput(props) {
   const [userInput, setUserInput] = useState();

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import DocCounterCard from "../components/DocCounterCard";
+import DocCounterCard from "./DocCounterCard";
 
-import docStats from "../logic/mdDocWordCount";
-import docTagCounter from "../logic/mdDocTagCount";
-import mdCleanUpList from "../logic/mdCleanUpList";
+import docStats from "../../logic/mdDocWordCount";
+import docTagCounter from "../../logic/mdDocTagCount";
+import mdCleanUpList from "../../logic/mdCleanUpList";
 
 function CounterSection(props) {
   const tagValues = Object.keys(props.htmlTagGroup);

@@ -1,14 +1,13 @@
 import react, { useState, useEffect } from "react";
 
-const MkdownInput = (props) => {
-  const mkInputHeader = {
-    color: "rgb(27, 29, 36)",
-    backgroundColor: "rgb(157, 174, 198)",
-  };
 
+
+
+
+const MkdownInput = (props) => {
   const [userMdInput, updateUserMdInput] = useState("NO CHANGE");
 
-  // React Ref allowing to get text from the pre tags
+  // React Ref allowing to get text from the pre tags // useRef??
   const mkInputDomRef = React.createRef();
 
   function changeState() {
@@ -17,8 +16,7 @@ const MkdownInput = (props) => {
   }
 
   return (
-    <MkLayout>
-      <EditorHeader headerStyle={mkInputHeader} editorTitle="Mark Down In" />
+    <div className="inputContainer">
       <pre
         ref={mkInputDomRef}
         onKeyUp={changeState}
@@ -26,17 +24,20 @@ const MkdownInput = (props) => {
       ></pre>
 
       <style jsx>{`
+        .inputContainer {
+          border-bottom: 1px solid black;
+        }
         pre {
-          padding: 20px;
+          padding: 5px;
           margin: 0;
-          background-color: rgb(135, 139, 153);
+          background-color: #fff;
           min-height: inherit;
         }
         pre:focus {
           background-color: #bfcde0;
         }
       `}</style>
-    </MkLayout>
+    </div>
   );
 };
 

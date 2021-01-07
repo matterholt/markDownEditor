@@ -7,7 +7,6 @@ const Header = () => {
       <h1>Getting the Mark on</h1>
       <style jsx>{`
         header {
-          border-bottom: solid black 2px;
           display: flex;
           font-size: 10px;
           justify-content: space-between;
