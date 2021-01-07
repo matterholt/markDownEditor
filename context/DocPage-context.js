@@ -17,16 +17,10 @@ function CurrentDocProvider({ children }) {
     }
     const name = event.name;
     const value = event.value;
-
-
-
     setDocState({ ...docState, [name]: value })
     console.log(docState)
    }
-  
-
-
-
+ 
     return (
       <CurrentDocContext.Provider value={{ docState, UpdateDocState }}>
         {children}

@@ -2,10 +2,11 @@ import react, { useState, useEffect } from "react";
 
 
 
+// Create a save to local storage when the input has change
+// wordwrap caped at 80,
 
 
 const MkdownInput = (props) => {
-  const [userMdInput, updateUserMdInput] = useState("NO CHANGE");
 
   // React Ref allowing to get text from the pre tags // useRef??
   const mkInputDomRef = React.createRef();
@@ -30,7 +31,6 @@ const MkdownInput = (props) => {
         pre {
           padding: 5px;
           margin: 0;
-          background-color: #fff;
           min-height: inherit;
         }
         pre:focus {

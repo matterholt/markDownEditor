@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect, Children } from "react";
 let showdown = require("showdown");
 
 import {CurrentDocProvider,useCurrentDocState} from "../context/DocPage-context"
@@ -13,7 +13,22 @@ import MkdownOut from "../components/editor/MkdownOut";
 
 
 
-
+const DocSheet = ({ children }) => (
+  <div>
+    {children}
+    <style jsx>{`
+      div {
+        background-color: #eaeaea;
+        max-width: 75vw;
+        min-width:50%;
+        min-height: 100vh;
+        padding: 5px;
+        margin: 2px;
+        border-radius: 10px;
+      }
+    `}</style>
+  </div>
+);
 
 const Editor = () => {
 
@@ -29,13 +44,15 @@ const Editor = () => {
   return (
     <Layout>
       <CurrentDocProvider>
-        <EditorDoc>
-          <MkdownInput mkdownConvert={convertInput} />
+
+        <EditorDoc previewStatus={{ isPrevOn, setIsPrevOn }}>
+          <DocSheet>
+            <MkdownInput mkdownConvert={convertInput} />
+          </DocSheet>
           {isPrevOn ? (
-            <div>
-              <button>Preview</button>
+            <DocSheet>
               <MkdownOut mkDwonText={mkdownInput} />
-            </div>
+            </DocSheet>
           ) : null}
         </EditorDoc>
       </CurrentDocProvider>

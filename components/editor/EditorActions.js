@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-export default function EditorActions(props) {
+export default function EditorActions({ previewStatus }) {
+  const { isPrevOn, setIsPrevOn } = previewStatus;
   return (
     <div className="editor__actions">
-      <button onClick={props.clearList}> Preview </button>
-      <button onClick={props.clearList}> New </button>
-      <button onClick={props.clearList}> Save </button>
+      <button onClick={() => setIsPrevOn(!isPrevOn)}>
+        {isPrevOn ? 'hide' : "show"} Markdown
+      </button>
+      <button onClick={() => console.log("new")}> New </button>
+      <button onClick={() => console.log("save")}> Save </button>
 
       <style jsx>{`
         .editor__actions {

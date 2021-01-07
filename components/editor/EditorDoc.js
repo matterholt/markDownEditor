@@ -5,22 +5,26 @@ import EditorHeader from "./EditorHeader"
 import {useCurrentDocState} from "../../context/DocPage-context";
 
 
-function EditorDoc({ children }) {
-    
+function EditorDoc({ children, previewStatus }) {
   const { docState, UpdateDocState } = useCurrentDocState();
-  
+
   return (
-    <div>
+    <div className="doc_container">
       <EditorHeader
         fileName={docState.fileName}
         UpdateDocState={UpdateDocState}
       />
+      <EditorActions previewStatus={previewStatus}/>
+      <div className="page_container">{children}</div>
 
-      <EditorActions />
-      {children}
       <style jsx>{`
-        div {
-          margin: 0;
+        .page_container {
+          display: flex;
+          flex-flow: row;
+          justify-content: center;
+        }
+        .doc_container {
+          margin-top: 10px;
           display: flex;
           flex-flow: column;
           min-height: 100vh;
