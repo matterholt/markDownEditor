@@ -73,22 +73,27 @@ function DocLayoutViewSelector() {
     </div>
   );
 }
-
-
-
-export default function EditorActions() {
-      
+ 
+function FileActions() {
   return (
-    <div className="editor__actions">
-      <DocLayoutViewSelector/>
+    <div>
       <button onClick={() => console.log("new")}> New </button>
       <button onClick={() => console.log("save")}> Save </button>
+    </div>
+  )
+}
+
+export default function EditorActions() {  
+  return (
+    <div className="editor__actions">
+      <FileActions/>
+      <DocLayoutViewSelector/>
 
       <style jsx>{`
         .editor__actions {
           background-color: #f3f8f8;
           display: flex;
-          justify-content: end;
+          justify-content: space-between;
           margin-bottom: 25px;
         }
       `}</style>

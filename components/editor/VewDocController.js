@@ -22,6 +22,10 @@ function VewDocController() {
     updateMdInputList([...mdPreviousLines, mdConvert]);
   }
 
+  function ClearScreen() {
+    updateMdInputList()
+  }
+
   // controls how docs are organized, one page, or 2 page with instant conversion to html
   if (viewSelector === "singleSheet") {
     return (

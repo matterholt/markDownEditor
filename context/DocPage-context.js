@@ -1,4 +1,9 @@
-import {useState, createContext } from 'react'
+/**
+ * Context pertaining to the to state of users Documents.
+ * 
+ * 
+ */
+import { useState, createContext } from 'react'
 
 const CurrentDocContext = createContext()
 
