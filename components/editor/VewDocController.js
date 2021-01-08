@@ -1,4 +1,5 @@
 import { useState} from 'react'
+import { convertInput } from "../../logic/convertInput";
 
 import DocSheet from "./DocSheet";
 import MkdownInput from "./MkdownInput";
@@ -6,39 +7,35 @@ import MkdownOut from "./MkdownOut";
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
-import {convertInput}from "../../logic/convertInput"
 
-function VewDocController() {
+
+
+function VewDocController({ htmlHandler, mkdHandler }) {
   const { docState } = useCurrentDocState();
-  let viewSelector = docState.viewSelector;
+  const viewSelector = docState.viewSelector;
 
-  const [mdPreviousLines, updateMdInputList] = useState([]);
-  const [markdownRaw, setMarkDownRaw] = useState([]);
+  const { currentDocHTML, updateCurrentDocHTML } = htmlHandler
+  const { currentMarkdownRaw, setCurrentMarkdownRaw } = mkdHandler;
 
-
-  function updateRawData(newRawLine) {
-    setMarkDownRaw([...markdownRaw,newRawLine]);
+  function newLineOfMkDown(newRawLine) {
+    //updateRawData
+    setCurrentMarkdownRaw([...currentMarkdownRaw, newRawLine]);
   }
 
-
-  function newLineOfMarkdown(newline) {
+  function newLineOfHTMl(newline) {
+    //newLineOfMarkdown
     const mdConvert = convertInput(newline);
-    updateMdInputList([...mdPreviousLines, mdConvert]);
-  }
-
-  function ClearScreen() {
-    updateMdInputList()
+    updateCurrentDocHTML([...currentDocHTML, mdConvert]);
   }
 
   // controls how docs are organized, one page, or 2 page with instant conversion to html
   if (viewSelector === "singleSheet") {
     return (
       <DocSheet>
-        <MkdownOut mkDwonText={mdPreviousLines} />
+        <MkdownOut mkDwonText={currentDocHTML} />
         <MkdownInput
-          mkdownConvert={convertInput}
-          updateRawData={updateRawData}
-          newLineOfMarkdown={newLineOfMarkdown}
+          newLineOfMkDown={newLineOfMkDown}
+          newLineOfHTMl={newLineOfHTMl}
         />
       </DocSheet>
     );
@@ -46,17 +43,16 @@ function VewDocController() {
     return (
       <>
         <DocSheet>
-          {markdownRaw.map((x) => (
+          {currentMarkdownRaw.map((x) => (
             <pre>{x}</pre>
           ))}
           <MkdownInput
-            mkdownConvert={convertInput}
-            newLineOfMarkdown={newLineOfMarkdown}
-            updateRawData={updateRawData}
+            newLineOfMkDown={newLineOfMkDown}
+            newLineOfHTMl={newLineOfHTMl}
           />
         </DocSheet>
         <DocSheet>
-          <MkdownOut mkDwonText={mdPreviousLines} />
+          <MkdownOut mkDwonText={currentDocHTML} />
         </DocSheet>
       </>
     );

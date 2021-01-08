@@ -74,20 +74,21 @@ function DocLayoutViewSelector() {
   );
 }
  
-function FileActions() {
+function FileActions({ clearAll }) {
   return (
     <div>
+      <button onClick={clearAll}>CLEAR</button>
       <button onClick={() => console.log("new")}> New </button>
       <button onClick={() => console.log("save")}> Save </button>
     </div>
-  )
+  );
 }
 
-export default function EditorActions() {  
+export default function EditorActions({ clearAll }) {
   return (
     <div className="editor__actions">
-      <FileActions/>
-      <DocLayoutViewSelector/>
+      <FileActions clearAll={clearAll}/>
+      <DocLayoutViewSelector />
 
       <style jsx>{`
         .editor__actions {

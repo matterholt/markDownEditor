@@ -5,12 +5,12 @@ import EditorHeader from "./EditorHeader"
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 
-function EditorDoc({ children, previewStatus }) {
+function EditorDoc({ children, clearAll }) {
   const { docState, UpdateDocState } = useCurrentDocState();
 
   return (
     <div className="doc_container">
-      <EditorActions />
+      <EditorActions clearAll={clearAll}/>
       <EditorHeader
         fileName={docState.fileName}
         UpdateDocState={UpdateDocState}

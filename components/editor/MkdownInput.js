@@ -1,25 +1,21 @@
 import react, { useState, useEffect } from "react";
 
-const MkdownInput = ({ mkdownConvert, newLineOfMarkdown, updateRawData }) => {
-  // React Ref allowing to get text from the pre tags // useRef??
+const MkdownInput = ({ newLineOfMkDown, newLineOfHTMl}) => {
   const mkInputDomRef = React.createRef();
 
   function changeState(e) {
     const innerInputText = e.target.innerText;
     if (e.keyCode === 13) {
       // should have a id associated so able to find and update
-      newLineOfMarkdown(innerInputText);
+      newLineOfHTMl(innerInputText);
+      newLineOfMkDown(innerInputText);
 
-      updateRawData(innerInputText);
-      
+      mkInputDomRef.current.innerText = "";
       mkInputDomRef.current.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
-      mkInputDomRef.current.innerText = "";
     }
-    let userMkdownText = mkInputDomRef.current.innerText;
-    mkdownConvert(userMkdownText);
   }
 
   return (

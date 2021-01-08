@@ -8,12 +8,23 @@ import VewDocController from "../components/editor/VewDocController";
 
 
 const Editor = () => {
+    const [currentMarkdownRaw, setCurrentMarkdownRaw] = useState([]);
+    const [currentDocHTML, updateCurrentDocHTML] = useState([]);
+  
+  function clearAll() {
+    setCurrentMarkdownRaw([])
+    updateCurrentDocHTML([])
+  }
 
+  
   return (
     <Layout>
       <CurrentDocProvider>
-        <EditorDoc>
-          <VewDocController/>
+        <EditorDoc clearAll={clearAll}>
+          <VewDocController
+            htmlHandler={{ currentDocHTML, updateCurrentDocHTML }}
+            mkdHandler={{ currentMarkdownRaw, setCurrentMarkdownRaw }}
+          />
         </EditorDoc>
       </CurrentDocProvider>
     </Layout>
