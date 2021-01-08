@@ -4,12 +4,15 @@ const CurrentDocContext = createContext()
 
 
 function CurrentDocProvider({ children }) {
-    const [docState, setDocState] = useState(
-        { fileName : "New Doc" }
-    )
+    const [docState, setDocState] = useState({
+      fileName: "New Doc",
+      vewSelector: "sideBySide",
+    });
       ;
   
-  
+  React.useEffect(() => {
+    console.log(docState);
+  });
   
   function UpdateDocState(event) {
     if (!event) {

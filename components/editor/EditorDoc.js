@@ -2,7 +2,7 @@ import EditorActions from "./EditorActions"
 import EditorHeader from "./EditorHeader"
 
 
-import {useCurrentDocState} from "../../context/DocPage-context";
+import { useCurrentDocState } from "../../context/DocPage-context";
 
 
 function EditorDoc({ children, previewStatus }) {
@@ -10,11 +10,11 @@ function EditorDoc({ children, previewStatus }) {
 
   return (
     <div className="doc_container">
+      <EditorActions />
       <EditorHeader
         fileName={docState.fileName}
         UpdateDocState={UpdateDocState}
       />
-      <EditorActions previewStatus={previewStatus}/>
       <div className="page_container">{children}</div>
 
       <style jsx>{`

@@ -24,7 +24,6 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
 
   return (
     <div className="inputContainer">
-      {markdownRaw.map((x) => <p>{x}</p>)}
       <pre
         ref={mkInputDomRef}
         onKeyUp={(e) => changeState(e)}
@@ -32,13 +31,14 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
       />
       <style jsx>{`
         .inputContainer {
-          border-bottom: 1px solid black;
+          border-top: 1px solid black;
         }
         pre {
           padding: 5px;
           margin: 0;
           min-height: inherit;
           white-space: pre-wrap;
+          background-color: #dae0e7;
         }
         pre:focus {
           background-color: #bfcde0;
