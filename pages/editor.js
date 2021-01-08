@@ -19,6 +19,9 @@ import MkdownOut from "../components/editor/MkdownOut";
       html = converter.makeHtml(userInput);
     return html
   }
+// data input update  {lineId:0,content:"this will be rendered"}
+// will be better for key map()
+
 
 const Editor = () => {
   const [mdPreviousLines, updateMdInputList] = useState([]);
@@ -28,11 +31,9 @@ const Editor = () => {
     const mdConvert = convertInput(newline);
     updateMdInputList([...mdPreviousLines, mdConvert]);
   }
-  
-
   React.useEffect(() => console.log(mdPreviousLines));
 
-  const [isPrevOn, setIsPrevOn] = useState(false)
+  const [isPrevOn, setIsPrevOn] = useState(true)
 
   return (
     <Layout>

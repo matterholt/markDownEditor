@@ -4,7 +4,7 @@ export default function EditorActions({ previewStatus }) {
   return (
     <div className="editor__actions">
       <button onClick={() => setIsPrevOn(!isPrevOn)}>
-        {isPrevOn ? 'hide' : "show"} Markdown
+        {isPrevOn ? 'Two' : "Single"} Markdown
       </button>
       <button onClick={() => console.log("new")}> New </button>
       <button onClick={() => console.log("save")}> Save </button>

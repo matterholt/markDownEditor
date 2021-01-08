@@ -6,7 +6,6 @@ const MkdownOut = ({ mkDwonText }) => {
 
   return (
     <div className="inputContainer">
-      {/* <pre dangerouslySetInnerHTML={createMarkup()} /> */}
       {mkDwonText.map((mdUserLine, mdLineNum) => (
         <MdCompileLine
           key={mdLineNum}
@@ -20,10 +19,9 @@ const MkdownOut = ({ mkDwonText }) => {
         }
         pre {
           color: rgb(157, 174, 198);
-          margin: 0;
           padding: 5px;
+          margin: 0;
           min-height: inherit;
-          background-color: #333745;
           white-space: pre-wrap;
         }
       `}</style>
