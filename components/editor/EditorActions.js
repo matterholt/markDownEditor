@@ -6,7 +6,7 @@ import { useCurrentDocState } from "../../context/DocPage-context";
 function DocLayoutViewSelector() {
   const { docState, UpdateDocState } = useCurrentDocState();
   const [docLayoutSelect, setDocLayoutSelect] = useState(
-    () => docState.vewSelector
+    () => docState.viewSelector
   );
 
   function handleChange(e) {
@@ -22,7 +22,7 @@ function DocLayoutViewSelector() {
       <input
         type="radio"
         id="view_side"
-        name="vewSelector"
+        name="viewSelector"
         value="sideBySide"
         defaultChecked={docLayoutSelect === "sideBySide"}
         onChange={handleChange}
@@ -36,7 +36,7 @@ function DocLayoutViewSelector() {
       <input
         type="radio"
         id="view_top"
-        name="vewSelector"
+        name="viewSelector"
         value="singleSheet"
         defaultChecked={docLayoutSelect === "singleSheet"}
         onChange={handleChange}

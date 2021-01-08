@@ -6,7 +6,7 @@ const CurrentDocContext = createContext()
 function CurrentDocProvider({ children }) {
     const [docState, setDocState] = useState({
       fileName: "New Doc",
-      vewSelector: "sideBySide",
+      viewSelector: "sideBySide",
     });
       ;
   

@@ -2,8 +2,8 @@ const DocSheet = ({ children }) => (
   <div>
     {children}
     <style jsx>{`
-      div {z
-        background-color: #eaeaea;
+      div {
+        background-color: #f7f7f7;
         max-width: 75vw;
         min-width: 50%;
         min-height: 100vh;

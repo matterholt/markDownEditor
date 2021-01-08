@@ -12,11 +12,14 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
       // should have a id associated so able to find and update
       newLineOfMarkdown(innerInputText);
       setMarkDownRaw([...markdownRaw, innerInputText]);
+
+          mkInputDomRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+
       mkInputDomRef.current.innerText = ""
     } 
-
-      // keep adding to the current Line id.
- 
         let userMkdownText = mkInputDomRef.current.innerText;
     mkdownConvert(userMkdownText);
   
@@ -39,6 +42,7 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
           min-height: inherit;
           white-space: pre-wrap;
           background-color: #dae0e7;
+          margin-bottom: 150vh;
         }
         pre:focus {
           background-color: #bfcde0;

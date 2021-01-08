@@ -10,7 +10,7 @@ import {convertInput}from "../../logic/convertInput"
 
 function VewDocController() {
   const { docState } = useCurrentDocState();
-  let docLayout = docState.vewSelector;
+  let viewSelector = docState.viewSelector;
 
 
   const [mdPreviousLines, updateMdInputList] = useState([]);
@@ -23,7 +23,7 @@ function VewDocController() {
   }
 
   // controls how docs are organized, one page, or 2 page with instant conversion to html
-  if (docLayout === "singleSheet") {
+  if (viewSelector === "singleSheet") {
     return (
       <DocSheet>
         <MkdownOut mkDwonText={mdPreviousLines} />
@@ -34,10 +34,11 @@ function VewDocController() {
         />
       </DocSheet>
     );
-  } else if (docLayout === "sideBySide") {
+  } else if (viewSelector === "sideBySide") {
     return (
       <>
-      <DocSheet>
+        <DocSheet>
+          <p>place unconverted text here!</p>
         <MkdownInput
           mkdownConvert={convertInput}
           mkdownInput={mkdownInput}
