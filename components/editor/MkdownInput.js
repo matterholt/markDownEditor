@@ -5,10 +5,6 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
   const mkInputDomRef = React.createRef();
 
 
-  // todo ====> 01-07=21
-  // remove sate from the parent and have this component control the state
-  // so when the state get's cleared the the component will get unmounted and located to the next line??
-
   function changeState(e) {
     if (e.keyCode === 13) {
       // append current value
@@ -26,7 +22,6 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
         onKeyUp={(e) => changeState(e)}
         contentEditable="true"
       />
-
       <style jsx>{`
         .inputContainer {
           border-bottom: 1px solid black;

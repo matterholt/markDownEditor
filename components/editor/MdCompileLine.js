@@ -7,11 +7,9 @@ export default function MdCompileLine({ mdUserLine }) {
   }
 
   return (
-    <li className="mdLine__rowList">
-      <div
+      <pre
         className="mdLine__string"
         dangerouslySetInnerHTML={createInnerHtml()}
-      ></div>
-    </li>
+      ></pre>
   );
 }
