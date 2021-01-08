@@ -12,9 +12,13 @@ function VewDocController() {
   const { docState } = useCurrentDocState();
   let viewSelector = docState.viewSelector;
 
-
   const [mdPreviousLines, updateMdInputList] = useState([]);
-  const [mkdownInput, updateMkdownInput] = useState("");
+  const [markdownRaw, setMarkDownRaw] = useState([]);
+
+
+  function updateRawData(newRawLine) {
+    setMarkDownRaw([...markdownRaw,newRawLine]);
+  }
 
 
   function newLineOfMarkdown(newline) {
@@ -33,7 +37,7 @@ function VewDocController() {
         <MkdownOut mkDwonText={mdPreviousLines} />
         <MkdownInput
           mkdownConvert={convertInput}
-          mkdownInput={mkdownInput}
+          updateRawData={updateRawData}
           newLineOfMarkdown={newLineOfMarkdown}
         />
       </DocSheet>
@@ -42,17 +46,19 @@ function VewDocController() {
     return (
       <>
         <DocSheet>
-          <p>place unconverted text here!</p>
-        <MkdownInput
-          mkdownConvert={convertInput}
-          mkdownInput={mkdownInput}
-          newLineOfMarkdown={newLineOfMarkdown}
-        />
+          {markdownRaw.map((x) => (
+            <pre>{x}</pre>
+          ))}
+          <MkdownInput
+            mkdownConvert={convertInput}
+            newLineOfMarkdown={newLineOfMarkdown}
+            updateRawData={updateRawData}
+          />
         </DocSheet>
         <DocSheet>
-        <MkdownOut mkDwonText={mdPreviousLines} />
+          <MkdownOut mkDwonText={mdPreviousLines} />
         </DocSheet>
-        </>
+      </>
     );
   } else {
     return <p>noting</p>;
