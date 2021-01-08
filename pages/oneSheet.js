@@ -2,11 +2,10 @@ import React, { useState } from "react";
 let showdown = require("showdown");
 
 import Header from "../components/general/Header";
-import Footer from "../components/general/Footer";
 import EditorActions from "../components/editor/EditorActions";
 import EditorStats from "../components/docDetail/EditorStats";
 import MdCompileLine from "../components/editor/MdCompileLine";
-import NewEmptyDoc from "../components/editor/NewEmptyDoc";
+import EmptyDoc from "../components/editor/EmptyDoc";
 
 function MkdownInput(props) {
   const [userInput, setUserInput] = useState();
@@ -92,9 +91,7 @@ function MkdownOutput(props) {
       <ol>
         {userMarkdowns.map((mdUserLine, mdLineNum) => (
           <MdCompileLine
-            key={mdLineNum}
             mdUserLine={mdUserLine}
-            mdLineNum={mdLineNum}
           />
         ))}
         <style jsx>{`
@@ -160,7 +157,7 @@ function OneSheet() {
         </div>
       </main>
 
-      <Footer />
+
       <style jsx>
         {`
           .sheet__container {

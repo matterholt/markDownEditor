@@ -14,20 +14,19 @@ import MkdownOut from "../components/editor/MkdownOut";
 
 
 
-
+  function convertInput(userInput) {
+    let converter = new showdown.Converter(),
+      html = converter.makeHtml(userInput);
+    return html
+  }
 
 const Editor = () => {
   const [mdPreviousLines, updateMdInputList] = useState([]);
    const [mkdownInput, updateMkdownInput] = useState("");
 
-  function convertInput(userInput) {
-    let converter = new showdown.Converter(),
-    html = converter.makeHtml(userInput);
-    updateMkdownInput(html);
-  }
-
   function newLineOfMarkdown(newline) {
-    updateMdInputList([...mdPreviousLines, newline]);
+    const mdConvert = convertInput(newline);
+    updateMdInputList([...mdPreviousLines, mdConvert]);
   }
   
 
@@ -48,7 +47,7 @@ const Editor = () => {
           </DocSheet>
           {isPrevOn ? (
             <DocSheet>
-              <MkdownOut mkDwonText={mkdownInput} />
+              <MkdownOut mkDwonText={mdPreviousLines} />
             </DocSheet>
           ) : null}
         </EditorDoc>

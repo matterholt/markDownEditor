@@ -1,18 +1,19 @@
 import MkLayout from "../general/Layout";
 import EditorHeader from "../editor/EditorActions";
+import MdCompileLine from "./MdCompileLine"
 
-const MkdownOut = (props) => {
-  function createMarkup() {
-    return { __html: props.mkDwonText };
-  }
-  const mkOutputHeader = {
-    color: "rgb(157, 174, 198)",
-    backgroundColor: "rgb(27, 29, 36)",
-  };
+const MkdownOut = ({ mkDwonText }) => {
 
   return (
     <div className="inputContainer">
-      <pre dangerouslySetInnerHTML={createMarkup()} />
+      {/* <pre dangerouslySetInnerHTML={createMarkup()} /> */}
+      {mkDwonText.map((mdUserLine, mdLineNum) => (
+        <MdCompileLine
+          key={mdLineNum}
+          mdUserLine={mdUserLine}
+          mdLineNum={mdLineNum}
+        />
+      ))}
       <style jsx>{`
         .inputContainer {
           border-bottom: 1px solid white;

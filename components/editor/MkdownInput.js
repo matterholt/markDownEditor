@@ -12,7 +12,7 @@ const MkdownInput = ({ mkdownConvert, newLineOfMarkdown }) => {
   function changeState(e) {
     if (e.keyCode === 13) {
       // append current value
-      newLineOfMarkdown(e.target);
+      newLineOfMarkdown(e.target.innerText);
       // clear the dom element to start making the next line
     }
     let userMkdownText = mkInputDomRef.current.innerText;

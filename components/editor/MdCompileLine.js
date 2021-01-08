@@ -1,13 +1,13 @@
-export default function MdCompileLine(props) {
-  var stringToHTML = props.mdUserLine;
+export default function MdCompileLine({ mdUserLine }) {
+
   function createInnerHtml() {
     return {
-      __html: stringToHTML,
+      __html: mdUserLine,
     };
   }
 
   return (
-    <li className="mdLine__rowList" key={props.mdLineNum}>
+    <li className="mdLine__rowList">
       <div
         className="mdLine__string"
         dangerouslySetInnerHTML={createInnerHtml()}
