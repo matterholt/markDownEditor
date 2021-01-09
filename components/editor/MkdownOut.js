@@ -1,16 +1,13 @@
-import MkLayout from "../general/Layout";
-import EditorHeader from "../editor/EditorActions";
 import MdCompileLine from "./MdCompileLine"
 
-const MkdownOut = ({ mkDwonText }) => {
-
+const MkdownOut = ({ editLine,mkDwonText }) => {
   return (
     <div className="inputContainer">
-      {mkDwonText.map((mdUserLine, mdLineNum) => (
+      {mkDwonText.map((mdUserLine) => (
         <MdCompileLine
-          key={mdLineNum}
+          key={mdUserLine.lineId}
           mdUserLine={mdUserLine}
-          mdLineNum={mdLineNum}
+          editLine={editLine}
         />
       ))}
       <style jsx>{`

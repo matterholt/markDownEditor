@@ -7,32 +7,51 @@ import MkdownOut from "./MkdownOut";
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
-
-
-
 function VewDocController({ htmlHandler, mkdHandler }) {
+
   const { docState } = useCurrentDocState();
   const viewSelector = docState.viewSelector;
+
 
   const { currentDocHTML, updateCurrentDocHTML } = htmlHandler
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = mkdHandler;
 
+  const [lineEdit, setLineEdit] = useState({lineId:"0", lineContent:"asdfasdfasdf"})
+
   function newLineOfMkDown(newRawLine) {
     //updateRawData
-    setCurrentMarkdownRaw([...currentMarkdownRaw, newRawLine]);
+    const nextLineId = currentMarkdownRaw.length + 1
+    const construct = {
+      lineId: nextLineId,
+      lineContent: newRawLine,
+    };
+    setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
   }
 
   function newLineOfHTMl(newline) {
     //newLineOfMarkdown
     const mdConvert = convertInput(newline);
-    updateCurrentDocHTML([...currentDocHTML, mdConvert]);
+        const nextLineId = currentDocHTML.length + 1;
+        const construct = {
+          lineId: nextLineId,
+          lineContent: mdConvert,
+        };
+    
+    updateCurrentDocHTML([...currentDocHTML, construct]);
+  } 
+
+  function editLine(elmID) {
+    const editLine = currentMarkdownRaw.find((x) => {
+      x.lineId === elmID;
+    });
+    setLineEdit(editLine)
   }
 
   // controls how docs are organized, one page, or 2 page with instant conversion to html
   if (viewSelector === "singleSheet") {
     return (
-      <DocSheet>
-        <MkdownOut mkDwonText={currentDocHTML} />
+      <DocSheet lineEdit={lineEdit}>
+        <MkdownOut editLine={editLine} mkDwonText={currentDocHTML} />
         <MkdownInput
           newLineOfMkDown={newLineOfMkDown}
           newLineOfHTMl={newLineOfHTMl}
@@ -44,7 +63,7 @@ function VewDocController({ htmlHandler, mkdHandler }) {
       <>
         <DocSheet>
           {currentMarkdownRaw.map((x) => (
-            <pre>{x}</pre>
+            <pre key={x.lineId }>{x.lineContent}</pre>
           ))}
           <MkdownInput
             newLineOfMkDown={newLineOfMkDown}
@@ -57,7 +76,7 @@ function VewDocController({ htmlHandler, mkdHandler }) {
       </>
     );
   } else {
-    return <p>noting</p>;
+    return <p>Nothing</p>;
   }
 }
 export default VewDocController;

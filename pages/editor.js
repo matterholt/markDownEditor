@@ -15,6 +15,9 @@ const Editor = () => {
     setCurrentMarkdownRaw([])
     updateCurrentDocHTML([])
   }
+  React.useEffect(() => {
+    console.log(currentMarkdownRaw);
+  })
 
   
   return (

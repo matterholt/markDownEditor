@@ -1,5 +1,12 @@
-const DocSheet = ({ children }) => (
+import UpdateLineModal from "../general/UpdateLineModal";
+
+
+
+const DocSheet = ({ children, lineEdit }) => {
+  const isEditable = true;
+  return(
   <div>
+    {isEditable ? <UpdateLineModal content={lineEdit} /> : null}
     {children}
     <style jsx>{`
       div {
@@ -10,8 +17,10 @@ const DocSheet = ({ children }) => (
         padding: 5px;
         margin: 2px;
         border-radius: 10px;
+        font-size: 2em;
       }
     `}</style>
-  </div>
-);
+  </div>)
+};
+
 export default DocSheet

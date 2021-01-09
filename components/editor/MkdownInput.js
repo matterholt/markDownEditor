@@ -1,6 +1,5 @@
-import react, { useState, useEffect } from "react";
 
-const MkdownInput = ({ newLineOfMkDown, newLineOfHTMl}) => {
+const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
   const mkInputDomRef = React.createRef();
 
   function changeState(e) {
@@ -35,7 +34,7 @@ const MkdownInput = ({ newLineOfMkDown, newLineOfHTMl}) => {
           min-height: inherit;
           white-space: pre-wrap;
           background-color: #dae0e7;
-          margin-bottom: 150vh;
+          margin-bottom: 50vh;
         }
         pre:focus {
           background-color: #bfcde0;
