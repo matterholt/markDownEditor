@@ -1,7 +1,7 @@
 
 
 
-export default function MdCompileLine({ editLine,mdUserLine }) {
+export default function MdCompileLine({ mdUserLine }) {
   function createInnerHtml() {
     return {
       __html: mdUserLine.lineContent,
@@ -11,7 +11,6 @@ export default function MdCompileLine({ editLine,mdUserLine }) {
   return (
     <>
       <div
-        onClick={()=>editLine(mdUserLine.lineId)}
         className="mdLine__string"
         dangerouslySetInnerHTML={createInnerHtml()}
       ></div>

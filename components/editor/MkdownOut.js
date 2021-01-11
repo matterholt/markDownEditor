@@ -7,7 +7,6 @@ const MkdownOut = ({ editLine,mkDwonText }) => {
         <MdCompileLine
           key={mdUserLine.lineId}
           mdUserLine={mdUserLine}
-          editLine={editLine}
         />
       ))}
       <style jsx>{`

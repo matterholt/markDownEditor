@@ -8,6 +8,7 @@ const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
       // should have a id associated so able to find and update
       newLineOfHTMl(innerInputText);
       newLineOfMkDown(innerInputText);
+      
 
       mkInputDomRef.current.innerText = "";
       mkInputDomRef.current.scrollIntoView({
@@ -15,6 +16,7 @@ const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
         block: "center",
       });
     }
+    console.log(e.target.innerText);
   }
 
   return (

@@ -12,6 +12,8 @@ function VewDocController({ htmlHandler, mkdHandler }) {
   const { docState } = useCurrentDocState();
   const viewSelector = docState.viewSelector;
 
+  const [isEditable,setIsEditable] = useState(false);
+
 
   const { currentDocHTML, updateCurrentDocHTML } = htmlHandler
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = mkdHandler;
@@ -40,10 +42,12 @@ function VewDocController({ htmlHandler, mkdHandler }) {
     updateCurrentDocHTML([...currentDocHTML, construct]);
   } 
 
-  function editLine(elmID) {
+  function editLine(elemID) {
+setIsEditable(true)
     const editLine = currentMarkdownRaw.find((x) => {
-      x.lineId === elmID;
+      return x.lineId === 2;
     });
+
     setLineEdit(editLine)
   }
 
@@ -51,7 +55,7 @@ function VewDocController({ htmlHandler, mkdHandler }) {
   if (viewSelector === "singleSheet") {
     return (
       <DocSheet lineEdit={lineEdit}>
-        <MkdownOut editLine={editLine} mkDwonText={currentDocHTML} />
+        <MkdownOut mkDwonText={currentDocHTML} />
         <MkdownInput
           newLineOfMkDown={newLineOfMkDown}
           newLineOfHTMl={newLineOfHTMl}
@@ -61,9 +65,17 @@ function VewDocController({ htmlHandler, mkdHandler }) {
   } else if (viewSelector === "sideBySide") {
     return (
       <>
-        <DocSheet>
+        <DocSheet isEditable={isEditable} lineEdit={lineEdit}>
           {currentMarkdownRaw.map((x) => (
-            <pre key={x.lineId }>{x.lineContent}</pre>
+            <pre
+              style={{
+                backgroundColor: "blue",
+              }}
+              onClick={() => editLine(x.lineId)}
+              key={x.lineId}
+            >
+              {x.lineContent}
+            </pre>
           ))}
           <MkdownInput
             newLineOfMkDown={newLineOfMkDown}

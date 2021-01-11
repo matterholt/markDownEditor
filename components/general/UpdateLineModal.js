@@ -4,12 +4,15 @@ function UpdateLine({ content }) {
       <h1>find it</h1>
       {JSON.stringify(content)}
       <style jsx>{`
+      div{
         position: absolute;
-        background-color: black;
+        z-index:100;
+        background-color: gray;
+        border:1px solid black;
         color: white;
-        top: 0;
+        bottom: 10px;
         width: 50%;
-        height: 150px;
+        height: 100px;}
       `}</style>
     </div>
   );
