@@ -23,10 +23,12 @@ function VewDocController({ htmlHandler, mkdHandler }) {
   function newLineOfMkDown(newRawLine) {
     //updateRawData
     const nextLineId = currentMarkdownRaw.length + 1
+    let [content] = newRawLine.split('\n');
     const construct = {
       lineId: nextLineId,
-      lineContent: newRawLine,
+      lineContent: content,
     };
+    console.log(construct);
     setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
   }
 
@@ -65,7 +67,11 @@ setIsEditable(true)
   } else if (viewSelector === "sideBySide") {
     return (
       <>
-        <DocSheet isEditable={isEditable} lineEdit={lineEdit}>
+        <DocSheet
+          isEditable={isEditable}
+          lineEdit={lineEdit}
+          setIsEditable={setIsEditable}
+        >
           {currentMarkdownRaw.map((x) => (
             <pre
               style={{

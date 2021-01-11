@@ -2,10 +2,10 @@ import UpdateLineModal from "../general/UpdateLineModal";
 
 
 
-const DocSheet = ({ children, isEditable, lineEdit }) => {
+const DocSheet = ({ children, isEditable, lineEdit, setIsEditable }) => {
   return (
     <div>
-      {isEditable ? <UpdateLineModal content={lineEdit} /> : null}
+      {isEditable ? <UpdateLineModal content={lineEdit} setIsEditable={setIsEditable}/> : null}
       {children}
       <style jsx>{`
         div {

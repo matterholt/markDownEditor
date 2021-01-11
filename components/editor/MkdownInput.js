@@ -4,7 +4,7 @@ const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
 
   function changeState(e) {
     const innerInputText = e.target.innerText;
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 ) {
       // should have a id associated so able to find and update
       newLineOfHTMl(innerInputText);
       newLineOfMkDown(innerInputText);
@@ -16,14 +16,14 @@ const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
         block: "center",
       });
     }
-    console.log(e.target.innerText);
+    console.log(e.keyCode);
   }
 
   return (
     <div className="inputContainer">
       <pre
         ref={mkInputDomRef}
-        onKeyUp={(e) => changeState(e)}
+        onKeyDown={(e) => changeState(e)}
         contentEditable="true"
       />
       <style jsx>{`
