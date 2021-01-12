@@ -24,7 +24,8 @@ const Editor = () => {
       <CurrentDocProvider>
         <EditorDoc clearAll={clearAll}>
           <VewDocController
-            mkdHandler={{ currentMarkdownRaw, setCurrentMarkdownRaw }}
+            currentMarkdownRaw={currentMarkdownRaw}
+            setCurrentMarkdownRaw={setCurrentMarkdownRaw}
           />
         </EditorDoc>
       </CurrentDocProvider>

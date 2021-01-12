@@ -7,18 +7,13 @@ import MkdownOut from "./MkdownOut";
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
-function VewDocController({ mkdHandler }) {
-  
+function VewDocController({ currentMarkdownRaw, setCurrentMarkdownRaw }) {
   const { docState } = useCurrentDocState();
   const viewSelector = docState.viewSelector;
-  const { currentMarkdownRaw, setCurrentMarkdownRaw } = mkdHandler;
-
-  const [testingingMKarray, setsomteisdf] = useState(currentMarkdownRaw);
-
   function newLineOfMkDown(newRawLine) {
     //updateRawData
-    const nextLineId = currentMarkdownRaw.length + 1
-    let [content] = newRawLine.split('\n');
+    const nextLineId = currentMarkdownRaw.length + 1;
+    let [content] = newRawLine.split("\n");
     const construct = {
       lineId: nextLineId,
       lineContent: content,
@@ -28,6 +23,7 @@ function VewDocController({ mkdHandler }) {
   }
 
   function updateSelectInput(contentLine) {
+    setCurrentMarkdownRaw('');
     let contentUpdate = currentMarkdownRaw;
     let listId = contentUpdate.map((x) => x.lineId).indexOf(contentLine.lineId);
     contentUpdate.splice(listId, 1, contentLine);
@@ -37,14 +33,14 @@ function VewDocController({ mkdHandler }) {
 
   React.useEffect(() => {
     console.log(currentMarkdownRaw);
-  })
+  });
 
   // controls how docs are organized, one page, or 2 page with instant conversion to html
   if (viewSelector === "singleSheet") {
     return (
       <DocSheet>
         <MkdownOut
-          mkDwonText={testingingMKarray}
+          currentMarkdownRaw={currentMarkdownRaw}
           updateSelectInput={updateSelectInput}
         />
         <MkdownInput newLineOfMkDown={newLineOfMkDown} />
@@ -53,19 +49,11 @@ function VewDocController({ mkdHandler }) {
   } else if (viewSelector === "sideBySide") {
     return (
       <>
-        <DocSheet
-          isEditable={isEditable}
-          lineEdit={lineEdit}
-          setIsEditable={setIsEditable}
-        >
+        <DocSheet>
           {currentMarkdownRaw.map((x) => (
-            <pre>
-              {x.lineContent}
-            </pre>
+            <pre>{x.lineContent}</pre>
           ))}
-          <MkdownInput
-            newLineOfMkDown={newLineOfMkDown}
-          />
+          <MkdownInput newLineOfMkDown={newLineOfMkDown} />
         </DocSheet>
         <DocSheet>
           <MkdownOut mkDwonText={currentDocHTML} />

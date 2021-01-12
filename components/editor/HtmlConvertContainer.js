@@ -28,6 +28,7 @@ export default function HtmlConvertContainer({ mdUserLine, updateSelectInput }) 
         />
       ) : null}
       <div
+        key={mdUserLine.lineId}
         onClick={() => editPreviousLine(mdUserLine)}
         className="mdLine__string"
         dangerouslySetInnerHTML={createInnerHtml()}

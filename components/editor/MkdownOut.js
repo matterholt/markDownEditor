@@ -3,16 +3,17 @@ import {useState} from 'react'
 import HtmlConvertContainer from "./HtmlConvertContainer";
 
 
-const MkdownOut = ({ mkDwonText, updateSelectInput }) => {
+const MkdownOut = ({ currentMarkdownRaw, updateSelectInput }) => {
+
   return (
     <div className="inputContainer">
-      {mkDwonText.map((mdUserLine) => (
-        <HtmlConvertContainer
-          key={mdUserLine.lineId}
-          mdUserLine={mdUserLine}
-          updateSelectInput={updateSelectInput}
-        />
-      ))}
+      {currentMarkdownRaw.map((mdUserLine) => (
+          <HtmlConvertContainer
+            key={mdUserLine.lineId}
+            mdUserLine={mdUserLine}
+            updateSelectInput={updateSelectInput}
+          />
+        ))}
       <style jsx>{`
         .inputContainer {
           border-bottom: 1px solid white;
