@@ -25,6 +25,7 @@ export default function HtmlConvertContainer({ mdUserLine, updateSelectInput }) 
           content={editLine}
           setIsEditable={setIsEditable}
           updateSelectInput={updateSelectInput}
+          setEditLine={setEditLine}
         />
       ) : null}
       <div

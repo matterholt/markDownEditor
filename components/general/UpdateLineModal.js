@@ -1,23 +1,26 @@
 import {useState}from 'react'
-function UpdateLine({ content, setIsEditable, updateSelectInput }) {
-  const [updatedLine, setUpdatedLine] = useState(content.lineContent);
+function UpdateLine({
+  content,
+  setIsEditable,
+  updateSelectInput,
+  setEditLine,
+}) {
+  const [updatedLine, setUpdatedLine] = useState(() => content.lineContent);
 
   function confirmChange() {
     const lineUpdate = {
       lineId: content.lineId,
       lineContent: updatedLine,
     };
-    
+    setEditLine()
     updateSelectInput(lineUpdate);
     setIsEditable(false);
   }
-
 
   return (
     <div>
       <button onClick={() => setIsEditable(false)}>Close</button>
       <button onClick={confirmChange}>Update</button>
-
       <h1>find it ${content.lineId}</h1>
       <textarea
         value={updatedLine}

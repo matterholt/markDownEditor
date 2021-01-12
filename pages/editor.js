@@ -12,11 +12,21 @@ const Editor = () => {
   
   function clearAll() {
     setCurrentMarkdownRaw([])
-
   }
+
+    function updateSelectInput(contentLine) {
+      let contentUpdate = [...currentMarkdownRaw];
+      let listId = contentUpdate
+        .map((x) => x.lineId)
+        .indexOf(contentLine.lineId);
+      contentUpdate.splice(listId, 1, contentLine);
+      setCurrentMarkdownRaw(contentUpdate);
+      // how to refresh the page once we have the an updated value????
+    }
+
   React.useEffect(() => {
     console.log(currentMarkdownRaw);
-  })
+  }, []);
 
   
   return (
@@ -26,6 +36,7 @@ const Editor = () => {
           <VewDocController
             currentMarkdownRaw={currentMarkdownRaw}
             setCurrentMarkdownRaw={setCurrentMarkdownRaw}
+            updateSelectInput={updateSelectInput}
           />
         </EditorDoc>
       </CurrentDocProvider>

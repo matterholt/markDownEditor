@@ -7,7 +7,11 @@ import MkdownOut from "./MkdownOut";
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
-function VewDocController({ currentMarkdownRaw, setCurrentMarkdownRaw }) {
+function VewDocController({
+  currentMarkdownRaw,
+  setCurrentMarkdownRaw,
+  updateSelectInput,
+}) {
   const { docState } = useCurrentDocState();
   const viewSelector = docState.viewSelector;
   function newLineOfMkDown(newRawLine) {
@@ -20,15 +24,6 @@ function VewDocController({ currentMarkdownRaw, setCurrentMarkdownRaw }) {
     };
     console.log(construct);
     setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
-  }
-
-  function updateSelectInput(contentLine) {
-    setCurrentMarkdownRaw('');
-    let contentUpdate = currentMarkdownRaw;
-    let listId = contentUpdate.map((x) => x.lineId).indexOf(contentLine.lineId);
-    contentUpdate.splice(listId, 1, contentLine);
-    setCurrentMarkdownRaw(contentUpdate);
-    // how to refresh the page once we have the an updated value????
   }
 
   React.useEffect(() => {
