@@ -16,7 +16,7 @@ const DocSheet = ({ children, isEditable, lineEdit, setIsEditable }) => {
           padding: 5px;
           margin: 2px;
           border-radius: 10px;
-          font-size: 2em;
+          font-size: 1.2em;
         }
       `}</style>
     </div>

@@ -11,7 +11,7 @@ const CurrentDocContext = createContext()
 function CurrentDocProvider({ children }) {
     const [docState, setDocState] = useState({
       fileName: "New Doc",
-      viewSelector: "sideBySide",
+      viewSelector: "singleSheet",
     });
       ;
   

@@ -1,5 +1,5 @@
 import { useState} from 'react'
-import { convertInput } from "../../logic/convertInput";
+import { convertInput } from "../../utils/convertInput";
 
 import DocSheet from "./DocSheet";
 import MkdownInput from "./MkdownInput";
@@ -7,18 +7,13 @@ import MkdownOut from "./MkdownOut";
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
-function VewDocController({ htmlHandler, mkdHandler }) {
-
+function VewDocController({ mkdHandler }) {
+  
   const { docState } = useCurrentDocState();
   const viewSelector = docState.viewSelector;
-
-  const [isEditable,setIsEditable] = useState(false);
-
-
-  const { currentDocHTML, updateCurrentDocHTML } = htmlHandler
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = mkdHandler;
 
-  const [lineEdit, setLineEdit] = useState({lineId:"0", lineContent:"asdfasdfasdf"})
+  const [testingingMKarray, setsomteisdf] = useState(currentMarkdownRaw);
 
   function newLineOfMkDown(newRawLine) {
     //updateRawData
@@ -32,36 +27,27 @@ function VewDocController({ htmlHandler, mkdHandler }) {
     setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
   }
 
-  function newLineOfHTMl(newline) {
-    //newLineOfMarkdown
-    const mdConvert = convertInput(newline);
-        const nextLineId = currentDocHTML.length + 1;
-        const construct = {
-          lineId: nextLineId,
-          lineContent: mdConvert,
-        };
-    
-    updateCurrentDocHTML([...currentDocHTML, construct]);
-  } 
-
-  function editLine(elemID) {
-setIsEditable(true)
-    const editLine = currentMarkdownRaw.find((x) => {
-      return x.lineId === 2;
-    });
-
-    setLineEdit(editLine)
+  function updateSelectInput(contentLine) {
+    let contentUpdate = currentMarkdownRaw;
+    let listId = contentUpdate.map((x) => x.lineId).indexOf(contentLine.lineId);
+    contentUpdate.splice(listId, 1, contentLine);
+    setCurrentMarkdownRaw(contentUpdate);
+    // how to refresh the page once we have the an updated value????
   }
+
+  React.useEffect(() => {
+    console.log(currentMarkdownRaw);
+  })
 
   // controls how docs are organized, one page, or 2 page with instant conversion to html
   if (viewSelector === "singleSheet") {
     return (
-      <DocSheet lineEdit={lineEdit}>
-        <MkdownOut mkDwonText={currentDocHTML} />
-        <MkdownInput
-          newLineOfMkDown={newLineOfMkDown}
-          newLineOfHTMl={newLineOfHTMl}
+      <DocSheet>
+        <MkdownOut
+          mkDwonText={testingingMKarray}
+          updateSelectInput={updateSelectInput}
         />
+        <MkdownInput newLineOfMkDown={newLineOfMkDown} />
       </DocSheet>
     );
   } else if (viewSelector === "sideBySide") {
@@ -73,19 +59,12 @@ setIsEditable(true)
           setIsEditable={setIsEditable}
         >
           {currentMarkdownRaw.map((x) => (
-            <pre
-              style={{
-                backgroundColor: "blue",
-              }}
-              onClick={() => editLine(x.lineId)}
-              key={x.lineId}
-            >
+            <pre>
               {x.lineContent}
             </pre>
           ))}
           <MkdownInput
             newLineOfMkDown={newLineOfMkDown}
-            newLineOfHTMl={newLineOfHTMl}
           />
         </DocSheet>
         <DocSheet>

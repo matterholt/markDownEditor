@@ -1,12 +1,16 @@
-import MdCompileLine from "./MdCompileLine"
+import {useState} from 'react'
 
-const MkdownOut = ({ editLine,mkDwonText }) => {
+import HtmlConvertContainer from "./HtmlConvertContainer";
+
+
+const MkdownOut = ({ mkDwonText, updateSelectInput }) => {
   return (
     <div className="inputContainer">
       {mkDwonText.map((mdUserLine) => (
-        <MdCompileLine
+        <HtmlConvertContainer
           key={mdUserLine.lineId}
           mdUserLine={mdUserLine}
+          updateSelectInput={updateSelectInput}
         />
       ))}
       <style jsx>{`

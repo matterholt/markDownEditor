@@ -9,11 +9,10 @@ import VewDocController from "../components/editor/VewDocController";
 
 const Editor = () => {
     const [currentMarkdownRaw, setCurrentMarkdownRaw] = useState([]);
-    const [currentDocHTML, updateCurrentDocHTML] = useState([]);
   
   function clearAll() {
     setCurrentMarkdownRaw([])
-    updateCurrentDocHTML([])
+
   }
   React.useEffect(() => {
     console.log(currentMarkdownRaw);
@@ -25,7 +24,6 @@ const Editor = () => {
       <CurrentDocProvider>
         <EditorDoc clearAll={clearAll}>
           <VewDocController
-            htmlHandler={{ currentDocHTML, updateCurrentDocHTML }}
             mkdHandler={{ currentMarkdownRaw, setCurrentMarkdownRaw }}
           />
         </EditorDoc>

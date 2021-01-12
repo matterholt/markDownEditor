@@ -1,14 +1,12 @@
 
-const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
+const MkdownInput = ({newLineOfMkDown }) => {
   const mkInputDomRef = React.createRef();
 
   function changeState(e) {
     const innerInputText = e.target.innerText;
     if (e.keyCode === 13 ) {
       // should have a id associated so able to find and update
-      newLineOfHTMl(innerInputText);
       newLineOfMkDown(innerInputText);
-      
 
       mkInputDomRef.current.innerText = "";
       mkInputDomRef.current.scrollIntoView({
@@ -16,7 +14,6 @@ const MkdownInput = ({newLineOfMkDown, newLineOfHTMl }) => {
         block: "center",
       });
     }
-    console.log(e.keyCode);
   }
 
   return (

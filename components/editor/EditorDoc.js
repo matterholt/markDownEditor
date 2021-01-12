@@ -22,6 +22,7 @@ function EditorDoc({ children, clearAll }) {
           display: flex;
           flex-flow: row;
           justify-content: center;
+          font-size:10px
         }
         .doc_container {
           margin-top: 10px;
