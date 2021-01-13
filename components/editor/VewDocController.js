@@ -26,6 +26,19 @@ function VewDocController({
     setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
   }
 
+
+  function updateSelectInput(contentLine) {
+    let contentUpdate = [...currentMarkdownRaw];
+    let listId = contentUpdate
+      .map((x) => x.lineId)
+      .indexOf(contentLine.lineId);
+    contentUpdate.splice(listId, 1, contentLine);
+    setCurrentMarkdownRaw(contentUpdate);
+  }
+  
+  
+  
+
   React.useEffect(() => {
     console.log(currentMarkdownRaw);
   });

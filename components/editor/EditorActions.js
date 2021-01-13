@@ -17,6 +17,8 @@ function DocLayoutViewSelector() {
     });
   }
 
+
+
   return (
     <div className="viewSelector_container">
       <input
@@ -74,7 +76,10 @@ function DocLayoutViewSelector() {
   );
 }
  
-function FileActions({ clearAll }) {
+function FileActions({ setCurrentMarkdownRaw }) {
+  function clearAll() {
+    setCurrentMarkdownRaw([]);
+  }
   return (
     <div>
       <button onClick={clearAll}>CLEAR</button>
@@ -84,10 +89,10 @@ function FileActions({ clearAll }) {
   );
 }
 
-export default function EditorActions({ clearAll }) {
+export default function EditorActions({ setCurrentMarkdownRaw }) {
   return (
     <div className="editor__actions">
-      <FileActions clearAll={clearAll}/>
+      <FileActions setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
       <DocLayoutViewSelector />
 
       <style jsx>{`

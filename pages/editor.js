@@ -10,19 +10,9 @@ import VewDocController from "../components/editor/VewDocController";
 const Editor = () => {
     const [currentMarkdownRaw, setCurrentMarkdownRaw] = useState([]);
   
-  function clearAll() {
-    setCurrentMarkdownRaw([])
-  }
 
-    function updateSelectInput(contentLine) {
-      let contentUpdate = [...currentMarkdownRaw];
-      let listId = contentUpdate
-        .map((x) => x.lineId)
-        .indexOf(contentLine.lineId);
-      contentUpdate.splice(listId, 1, contentLine);
-      setCurrentMarkdownRaw(contentUpdate);
-      // how to refresh the page once we have the an updated value????
-    }
+
+
 
   React.useEffect(() => {
     console.log(currentMarkdownRaw);
@@ -32,11 +22,10 @@ const Editor = () => {
   return (
     <Layout>
       <CurrentDocProvider>
-        <EditorDoc clearAll={clearAll}>
+        <EditorDoc setCurrentMarkdownRaw={setCurrentMarkdownRaw}>
           <VewDocController
             currentMarkdownRaw={currentMarkdownRaw}
             setCurrentMarkdownRaw={setCurrentMarkdownRaw}
-            updateSelectInput={updateSelectInput}
           />
         </EditorDoc>
       </CurrentDocProvider>

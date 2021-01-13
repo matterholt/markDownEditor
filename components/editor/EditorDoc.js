@@ -5,12 +5,12 @@ import EditorHeader from "./EditorHeader"
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 
-function EditorDoc({ children, clearAll }) {
+function EditorDoc({ children, setCurrentMarkdownRaw }) {
   const { docState, UpdateDocState } = useCurrentDocState();
 
   return (
     <div className="doc_container">
-      <EditorActions clearAll={clearAll}/>
+      <EditorActions setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
       <EditorHeader
         fileName={docState.fileName}
         UpdateDocState={UpdateDocState}
@@ -22,7 +22,7 @@ function EditorDoc({ children, clearAll }) {
           display: flex;
           flex-flow: row;
           justify-content: center;
-          font-size:10px
+          font-size: 10px;
         }
         .doc_container {
           margin-top: 10px;
