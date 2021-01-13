@@ -10,10 +10,7 @@ const CurrentDocContext = createContext()
 
 function CurrentDocProvider({ children }) {
     const [docState, setDocState] = useState({
-      fileName: "New Doc",
-      viewSelector: "singleSheet",
     });
-      ;
   
   React.useEffect(() => {
     console.log(docState);

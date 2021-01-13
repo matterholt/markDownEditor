@@ -4,23 +4,14 @@ const LinkButton = (props) => {
   return (
     <>
       <Link href={props.linkPath}>
-        <div className="landing__editorLink">
-          <a>{props.linkName}</a>
-        </div>
+        <a className="landing__editorLink">{props.linkName}</a>
       </Link>
       <style jsx>{`
         .landing__editorLink {
-          background: #4a7677;
-          color: #eaf2f3;
-          font-size: 1.5em;
+          color: #4a7677;
+          font-size: 2.5rem;
           text-align: center;
-          padding: 12px 20px;
-          border-radius: 5px;
-          transition: all 0.2s ease-in-out;
-        }
-        .landing__editorLink:hover {
-          cursor: pointer;
-          transform: scale(1.1);
+          text-decoration: none;
         }
       `}</style>
     </>

@@ -12,21 +12,16 @@ function VewDocController({
   setCurrentMarkdownRaw,
   updateSelectInput,
 }) {
-  const { docState } = useCurrentDocState();
-  const viewSelector = docState.viewSelector;
   function newLineOfMkDown(newRawLine) {
-    //updateRawData
     const nextLineId = currentMarkdownRaw.length + 1;
     let [content] = newRawLine.split("\n");
     const construct = {
       lineId: nextLineId,
       lineContent: content,
-    };
-    console.log(construct);
+    }
     setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
   }
-
-
+  
   function updateSelectInput(contentLine) {
     let contentUpdate = [...currentMarkdownRaw];
     let listId = contentUpdate
@@ -35,16 +30,7 @@ function VewDocController({
     contentUpdate.splice(listId, 1, contentLine);
     setCurrentMarkdownRaw(contentUpdate);
   }
-  
-  
-  
 
-  React.useEffect(() => {
-    console.log(currentMarkdownRaw);
-  });
-
-  // controls how docs are organized, one page, or 2 page with instant conversion to html
-  if (viewSelector === "singleSheet") {
     return (
       <DocSheet>
         <MkdownOut
@@ -54,22 +40,5 @@ function VewDocController({
         <MkdownInput newLineOfMkDown={newLineOfMkDown} />
       </DocSheet>
     );
-  } else if (viewSelector === "sideBySide") {
-    return (
-      <>
-        <DocSheet>
-          {currentMarkdownRaw.map((x) => (
-            <pre>{x.lineContent}</pre>
-          ))}
-          <MkdownInput newLineOfMkDown={newLineOfMkDown} />
-        </DocSheet>
-        <DocSheet>
-          <MkdownOut mkDwonText={currentDocHTML} />
-        </DocSheet>
-      </>
-    );
-  } else {
-    return <p>Nothing</p>;
-  }
 }
 export default VewDocController;

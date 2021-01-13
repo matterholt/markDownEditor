@@ -26,6 +26,7 @@ const MkdownInput = ({newLineOfMkDown }) => {
       <style jsx>{`
         .inputContainer {
           border-top: 1px solid black;
+          font-size: 1em;
         }
         pre {
           padding: 5px;

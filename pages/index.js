@@ -2,8 +2,6 @@ import Header from "../components/landingPage/Header"
 function Index() {
   return (
     <Header/>
-
-
   );
 }
 

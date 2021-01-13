@@ -17,6 +17,7 @@ const MkdownOut = ({ currentMarkdownRaw, updateSelectInput }) => {
       <style jsx>{`
         .inputContainer {
           border-bottom: 1px solid white;
+          font-size:1em;
         }
         pre {
           color: rgb(157, 174, 198);

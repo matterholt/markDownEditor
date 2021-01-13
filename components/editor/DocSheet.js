@@ -1,21 +1,20 @@
-import UpdateLineModal from "../general/UpdateLineModal";
 
-
-
-const DocSheet = ({ children}) => {
+const DocSheet = ({ children }) => {
+  const [fontSize, setFontSize] = useState(10)
+  
   return (
-    <div>
+    <div className="docSheetStyle">
       {children}
       <style jsx>{`
-        div {
+        .docSheetStyle {
           background-color: #f7f7f7;
           max-width: 75vw;
           min-width: 50%;
           min-height: 100vh;
-          padding: 5px;
+          padding: 15px;
           margin: 2px;
           border-radius: 10px;
-          font-size: 1.2em;
+          font-size: ${fontSize}px;
         }
       `}</style>
     </div>

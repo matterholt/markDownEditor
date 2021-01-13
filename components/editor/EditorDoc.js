@@ -1,20 +1,21 @@
+import { useState } from "react";
+
 import EditorActions from "./EditorActions"
-import EditorHeader from "./EditorHeader"
 
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 
 function EditorDoc({ children, setCurrentMarkdownRaw }) {
-  const { docState, UpdateDocState } = useCurrentDocState();
+  const [currentDocTitle, setCurrentDocTitle] = useState("TEST")
 
   return (
     <div className="doc_container">
-      <EditorActions setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
-      <EditorHeader
-        fileName={docState.fileName}
-        UpdateDocState={UpdateDocState}
+      <EditorActions
+        setCurrentMarkdownRaw={setCurrentMarkdownRaw}
+        docTitleHandler={{ currentDocTitle, setCurrentDocTitle }}
       />
+
       <div className="page_container">{children}</div>
 
       <style jsx>{`
@@ -23,9 +24,10 @@ function EditorDoc({ children, setCurrentMarkdownRaw }) {
           flex-flow: row;
           justify-content: center;
           font-size: 10px;
+          margin: 15px;
         }
         .doc_container {
-          margin-top: 10px;
+          margin: 10px;
           display: flex;
           flex-flow: column;
           min-height: 100vh;

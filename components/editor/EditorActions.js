@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { Button } from "../general/Button"
+import DocTitle from "./DocTitle"
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
@@ -16,8 +18,6 @@ function DocLayoutViewSelector() {
       value: e.target.value
     });
   }
-
-
 
   return (
     <div className="viewSelector_container">
@@ -76,31 +76,45 @@ function DocLayoutViewSelector() {
   );
 }
  
-function FileActions({ setCurrentMarkdownRaw }) {
+function FileActions({ setCurrentMarkdownRaw  }) {
   function clearAll() {
     setCurrentMarkdownRaw([]);
   }
   return (
     <div>
-      <button onClick={clearAll}>CLEAR</button>
-      <button onClick={() => console.log("new")}> New </button>
-      <button onClick={() => console.log("save")}> Save </button>
+      <Button title="CLEAR" action={clearAll} />
+      <Button title="New" action={() => console.log("new")} />
+      <Button title="Save" action={() => console.log("save")} />
     </div>
   );
 }
 
-export default function EditorActions({ setCurrentMarkdownRaw }) {
+
+
+function FontSize() {
+  return (
+    <div>
+    <Button title="+" action={() => console.log('Increase Font')} />
+    <Button title="-" action={()=> console.log('Decrease Font') }/>
+    </div>
+  )
+}
+
+export default function EditorActions({ setCurrentMarkdownRaw, docTitleHandler }) {
   return (
     <div className="editor__actions">
       <FileActions setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
-      <DocLayoutViewSelector />
+      <DocTitle docTitleHandler={docTitleHandler} />
+      <FontSize />
 
       <style jsx>{`
         .editor__actions {
-          background-color: #f3f8f8;
+          background-color: #4a7677;
+          border-radius: 10px;
           display: flex;
           justify-content: space-between;
-          margin-bottom: 25px;
+          align-items: center;
+          padding: 0 15px;
         }
       `}</style>
     </div>

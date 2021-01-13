@@ -13,13 +13,12 @@ const darkTheme = {
 const Layout = ({ children }) => (
   <div>
     <Header />
-
     {children}
     <style global jsx>{`
       html,
       body {
         padding: 0;
-        margin: 0 25px;
+        margin: 0 ;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
           Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         font-size: 62.5%;
