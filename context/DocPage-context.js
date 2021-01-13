@@ -9,11 +9,12 @@ const CurrentDocContext = createContext()
 
 
 function CurrentDocProvider({ children }) {
-    const [docState, setDocState] = useState({
-    });
+  const [docState, setDocState] = useState({
+    fontSize: 10
+  });
   
   React.useEffect(() => {
-    console.log(docState);
+    console.log('total Doc',docState);
   });
   
   function UpdateDocState(event) {

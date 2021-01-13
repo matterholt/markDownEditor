@@ -5,6 +5,7 @@ import DocTitle from "./DocTitle"
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 
+// removed component, may use later
 function DocLayoutViewSelector() {
   const { docState, UpdateDocState } = useCurrentDocState();
   const [docLayoutSelect, setDocLayoutSelect] = useState(
@@ -92,12 +93,18 @@ function FileActions({ setCurrentMarkdownRaw  }) {
 
 
 function FontSize() {
+  const { docState, UpdateDocState } = useCurrentDocState();
+
+  function updateFontSize(action) {
+    const newFontSize = docState.fontSize + action;
+    UpdateDocState({ name: "fontSize", value: newFontSize });
+  }
   return (
     <div>
-    <Button title="+" action={() => console.log('Increase Font')} />
-    <Button title="-" action={()=> console.log('Decrease Font') }/>
+      <Button title="+" action={() => updateFontSize(1)} />
+      <Button title="-" action={() => updateFontSize(-1)} />
     </div>
-  )
+  );
 }
 
 export default function EditorActions({ setCurrentMarkdownRaw, docTitleHandler }) {

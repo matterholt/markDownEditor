@@ -1,6 +1,7 @@
+import {useCurrentDocState} from "../../context/DocPage-context"
 
 const DocSheet = ({ children }) => {
-  const [fontSize, setFontSize] = useState(10)
+  const {docState} = useCurrentDocState();
   
   return (
     <div className="docSheetStyle">
@@ -14,7 +15,7 @@ const DocSheet = ({ children }) => {
           padding: 15px;
           margin: 2px;
           border-radius: 10px;
-          font-size: ${fontSize}px;
+          font-size: ${docState.fontSize}px;
         }
       `}</style>
     </div>
