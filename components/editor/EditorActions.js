@@ -78,28 +78,24 @@ function DocLayoutViewSelector() {
 }
 */
  
-function DocSave({ saveFile }) {
+function DocSave({ saveFile, isDisabled }) {
   return (
     <div>
-      <Button title="Save" action={saveFile} />
+      <Button isDisabled={isDisabled} title="Save" action={saveFile} />
     </div>
   );
 }
 
-
-
-function ClearCurrentDoc({ setCurrentMarkdownRaw }) {
+function ClearCurrentDoc({ setCurrentMarkdownRaw, isDisabled }) {
   function clearAll() {
     setCurrentMarkdownRaw([]);
   }
   return (
     <div>
-      <Button title="CLEAR" action={clearAll} />
+      <Button isDisabled={isDisabled} title="CLEAR" action={clearAll} />
     </div>
   );
 }
-
-
 
 function FontSize({ updateFontSize }) {
   return (
@@ -114,11 +110,18 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
   const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
 
+  const isDisabled = currentMarkdownRaw.length === 0;
+
+
   function updateFontSize(action) {
     const newFontSize = docState.fontSize + action;
     UpdateDocState({ name: "fontSize", value: newFontSize });
   }
   function saveFile() {
+
+    if (currentMarkdownRaw.length === 0) {
+      throw new Error('Document is empty')
+    }
     const savedFiles = docState.savedFiles;
     const currentDoc = {
       id: savedFiles.length,
@@ -131,8 +134,11 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
   return (
     <div className="editor__toolbar">
       <div className="editor__actions">
-        <ClearCurrentDoc setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
-        <DocSave saveFile={saveFile} />
+        <ClearCurrentDoc
+          setCurrentMarkdownRaw={setCurrentMarkdownRaw}
+          isDisabled={isDisabled}
+        />
+        <DocSave saveFile={saveFile} isDisabled={isDisabled} />
       </div>
       <DocTitle docTitleHandlers={docTitleHandlers} />
       <FontSize updateFontSize={updateFontSize} />
@@ -145,6 +151,7 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
           justify-content: space-between;
           align-items: center;
           padding: 0 15px;
+          grid-column 1 /span2
         }
         .editor__actions {
           display: flex;

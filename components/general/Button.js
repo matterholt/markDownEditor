@@ -1,5 +1,5 @@
-const Button = ({ action, title }) => (
-  <button onClick={action}>
+const Button = ({ isDisabled = false, action, title }) => (
+  <button disabled={isDisabled} onClick={action}>
     {title}
     <style jsx>{`
       button {
@@ -15,7 +15,7 @@ const Button = ({ action, title }) => (
         background-color: #b9caca;
       }
       button:active {
-        color:gray;
+        color: gray;
         background-color: white;
       }
     `}</style>
