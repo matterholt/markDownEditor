@@ -10,7 +10,11 @@ const CurrentDocContext = createContext()
 
 function CurrentDocProvider({ children }) {
   const [docState, setDocState] = useState({
-    fontSize: 10
+    fontSize: 10,
+    savedFiles: [
+      { id: 0, fileName: "test", content: "sadfasdfasdf asdf asd" },
+      { id: 1, fileName: "test_2", content: "sadfasdfasdf asdf asd asdfasdfas" },
+    ],
   });
   
   React.useEffect(() => {

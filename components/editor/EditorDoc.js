@@ -6,17 +6,42 @@ import EditorActions from "./EditorActions"
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 
-function EditorDoc({ children, setCurrentMarkdownRaw }) {
-  const [currentDocTitle, setCurrentDocTitle] = useState("TEST")
+
+function SavedFiles({ savedFiles }) {
+  return (
+    <div>
+      <h4>Saved Files</h4>
+      {savedFiles.map((file) => {
+        return (
+          <li key={file.id }>
+            <p>{file.fileName}</p>
+            <button>Edit</button>
+            <button>Delete</button>
+          </li>
+        );
+      })}
+    </div>
+  );
+}
+
+
+function EditorDoc({ children, currentMarkdownHandlers }) {
+  const { docState } = useCurrentDocState();
+
+  const [currentDocTitle, setCurrentDocTitle] = useState("New Doc");
+  const { savedFiles } = docState;
 
   return (
     <div className="doc_container">
       <EditorActions
-        setCurrentMarkdownRaw={setCurrentMarkdownRaw}
-        docTitleHandler={{ currentDocTitle, setCurrentDocTitle }}
+        currentMarkdownHandlers={currentMarkdownHandlers}
+        docTitleHandlers={{ currentDocTitle, setCurrentDocTitle }}
       />
 
-      <div className="page_container">{children}</div>
+      <div className="page_container">
+        <SavedFiles savedFiles={savedFiles} />
+        {children}
+      </div>
 
       <style jsx>{`
         .page_container {

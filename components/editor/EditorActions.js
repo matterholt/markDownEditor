@@ -4,7 +4,7 @@ import { Button } from "../general/Button"
 import DocTitle from "./DocTitle"
 
 import { useCurrentDocState } from "../../context/DocPage-context";
-
+/*
 // removed component, may use later
 function DocLayoutViewSelector() {
   const { docState, UpdateDocState } = useCurrentDocState();
@@ -76,29 +76,32 @@ function DocLayoutViewSelector() {
     </div>
   );
 }
+*/
  
-function FileActions({ setCurrentMarkdownRaw  }) {
-  function clearAll() {
-    setCurrentMarkdownRaw([]);
-  }
+function DocSave({ saveFile }) {
   return (
     <div>
-      <Button title="CLEAR" action={clearAll} />
-      <Button title="New" action={() => console.log("new")} />
-      <Button title="Save" action={() => console.log("save")} />
+      <Button title="Save" action={saveFile} />
     </div>
   );
 }
 
 
 
-function FontSize() {
-  const { docState, UpdateDocState } = useCurrentDocState();
-
-  function updateFontSize(action) {
-    const newFontSize = docState.fontSize + action;
-    UpdateDocState({ name: "fontSize", value: newFontSize });
+function ClearCurrentDoc({ setCurrentMarkdownRaw }) {
+  function clearAll() {
+    setCurrentMarkdownRaw([]);
   }
+  return (
+    <div>
+      <Button title="CLEAR" action={clearAll} />
+    </div>
+  );
+}
+
+
+
+function FontSize({ updateFontSize }) {
   return (
     <div>
       <Button title="+" action={() => updateFontSize(1)} />
@@ -107,21 +110,44 @@ function FontSize() {
   );
 }
 
-export default function EditorActions({ setCurrentMarkdownRaw, docTitleHandler }) {
+export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
+  const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
+  const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
+
+  function updateFontSize(action) {
+    const newFontSize = docState.fontSize + action;
+    UpdateDocState({ name: "fontSize", value: newFontSize });
+  }
+  function saveFile() {
+    const savedFiles = docState.savedFiles;
+    const currentDoc = {
+      id: savedFiles.length,
+      fileName: docTitleHandlers.currentDocTitle,
+      content: currentMarkdownRaw,
+    };
+    UpdateDocState({ name: "savedFiles", value: [...savedFiles, currentDoc] });
+  }
+
   return (
-    <div className="editor__actions">
-      <FileActions setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
-      <DocTitle docTitleHandler={docTitleHandler} />
-      <FontSize />
+    <div className="editor__toolbar">
+      <div className="editor__actions">
+        <ClearCurrentDoc setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
+        <DocSave saveFile={saveFile} />
+      </div>
+      <DocTitle docTitleHandlers={docTitleHandlers} />
+      <FontSize updateFontSize={updateFontSize} />
 
       <style jsx>{`
-        .editor__actions {
+        .editor__toolbar {
           background-color: #4a7677;
           border-radius: 10px;
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 0 15px;
+        }
+        .editor__actions {
+          display: flex;
         }
       `}</style>
     </div>

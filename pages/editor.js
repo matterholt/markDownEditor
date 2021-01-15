@@ -8,13 +8,17 @@ import VewDocController from "../components/editor/VewDocController";
 
 
 const Editor = () => {
-  const [currentFileName, setCurrentFileName] = useState("")
   const [currentMarkdownRaw, setCurrentMarkdownRaw] = useState([]);
 
   return (
     <Layout>
       <CurrentDocProvider>
-        <EditorDoc setCurrentMarkdownRaw={setCurrentMarkdownRaw}>
+        <EditorDoc
+          currentMarkdownHandlers={{
+            currentMarkdownRaw,
+            setCurrentMarkdownRaw,
+          }}
+        >
           <VewDocController
             currentMarkdownRaw={currentMarkdownRaw}
             setCurrentMarkdownRaw={setCurrentMarkdownRaw}
