@@ -86,6 +86,7 @@ function DocSave({ saveFile, isDisabled }) {
   );
 }
 
+
 function ClearCurrentDoc({ setCurrentMarkdownRaw, isDisabled }) {
   function clearAll() {
     setCurrentMarkdownRaw([]);
@@ -119,22 +120,45 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
     const newFontSize = docState.fontSize + action;
     UpdateDocState({ name: "fontSize", value: newFontSize });
   }
+
   function saveFile() {
+    const currentlySavedFiles = docState.savedFiles;
+          if (currentMarkdownRaw.length === 0) {
+            throw new Error("Document is empty");
+          }
+    
+    const savingFileCheck = currentlySavedFiles.find((x) => x.fileName === docTitleHandlers.currentDocTitle)
 
-    if (currentMarkdownRaw.length === 0) {
-      throw new Error('Document is empty')
-    }
-    const savedFiles = docState.savedFiles;
-
-    // Need to generate a random id, 
-    // get id then the max??
+    // need a better way to calculate the id
     const currentDoc = {
-      id: savedFiles.length,
+      id: currentlySavedFiles.length,
       fileName: docTitleHandlers.currentDocTitle,
       content: currentMarkdownRaw,
     };
-    UpdateDocState({ name: "savedFiles", value: [...savedFiles, currentDoc] });
+    
+    const savedListRemove = currentlySavedFiles.filter(
+      (x) => x.fileName !== currentDoc.fileName);
+    
+    if (savingFileCheck) {
+      let updatedSaveFiles = [...savedListRemove, currentDoc];
+            UpdateDocState({
+              name: "savedFiles",
+              value: updatedSaveFiles
+            });
+
+    } else {
+      UpdateDocState({
+        name: "savedFiles",
+        value: [...currentlySavedFiles, currentDoc],
+      });
+    }
+
+
+
   }
+
+
+
 
   return (
     <div className="editor__toolbar">

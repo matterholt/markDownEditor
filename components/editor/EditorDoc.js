@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 import EditorActions from "./EditorActions"
-import SavedFiles from "../docFeatures/SavedFiles"
+import FileEditsSaved from "../docFeatures/FileEditsSaved";
 
 
 
@@ -22,18 +22,18 @@ function EditorDoc({ children, currentMarkdownHandlers }) {
         docTitleHandlers={{ currentDocTitle, setCurrentDocTitle }}
       />
       <div className="savedDoc">
-        <SavedFiles savedFiles={savedFiles} />
+        <FileEditsSaved savedFiles={savedFiles} />
       </div>
       <div className="page_container">{children}</div>
 
       <style jsx>{`
-        .savedDoc{
+        .savedDoc {
           grid-row: 2;
-          grid-column:1;
+          grid-column: 1;
           list-style: none;
           padding: 15px;
-        } 
-        
+        }
+
         .page_container {
           display: flex;
           flex-flow: row;

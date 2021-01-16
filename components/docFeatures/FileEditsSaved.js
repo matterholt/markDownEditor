@@ -2,18 +2,15 @@ import { useCurrentDocState } from "../../context/DocPage-context";
 
 
 
-function SavedFiles({ savedFiles }) {
-    const { docState, UpdateDocState } = useCurrentDocState();
-    
+function FileEditsSaved({ savedFiles }) {
+  const { docState, UpdateDocState } = useCurrentDocState();
 
-    function removedSelectedDoc(deletedFileName) {
-        const currentList = docState.savedFiles
-        const updateList = currentList.filter(
-          (x) => x.fileName != deletedFileName
-        );
-        console.log(updateList)
-        UpdateDocState({ name: 'savedFiles', value: updateList });
-    }
+  function removedSelectedDoc(deletedFileName) {
+    const currentList = docState.savedFiles;
+    const updateList = currentList.filter((x) => x.fileName != deletedFileName);
+    console.log(updateList);
+    UpdateDocState({ name: "savedFiles", value: updateList });
+  }
 
   return (
     <ul>
@@ -24,7 +21,9 @@ function SavedFiles({ savedFiles }) {
             <h4>{file.fileName}</h4>
             <div>
               <button>Edit</button>
-              <button onClick={()=>removedSelectedDoc(file.fileName)}>Delete</button>
+              <button onClick={() => removedSelectedDoc(file.fileName)}>
+                Delete
+              </button>
             </div>
           </li>
         );
@@ -48,4 +47,4 @@ function SavedFiles({ savedFiles }) {
   );
 }
 
-export default SavedFiles;
+export default FileEditsSaved;
