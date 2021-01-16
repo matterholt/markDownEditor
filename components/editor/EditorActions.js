@@ -106,6 +106,8 @@ function FontSize({ updateFontSize }) {
   );
 }
 
+
+
 export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
   const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
@@ -123,6 +125,9 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
       throw new Error('Document is empty')
     }
     const savedFiles = docState.savedFiles;
+
+    // Need to generate a random id, 
+    // get id then the max??
     const currentDoc = {
       id: savedFiles.length,
       fileName: docTitleHandlers.currentDocTitle,

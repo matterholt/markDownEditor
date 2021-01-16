@@ -1,45 +1,12 @@
 import { useState } from "react";
 
-import EditorActions from "./EditorActions"
-
-
 import { useCurrentDocState } from "../../context/DocPage-context";
 
+import EditorActions from "./EditorActions"
+import SavedFiles from "../docFeatures/SavedFiles"
 
 
-function SavedFiles({ savedFiles }) {
-  return (
-    <ul>
-      <h4>Saved Files</h4>
-      {savedFiles.map((file) => {
-        return (
-          <li key={file.id}>
-            <h4>{file.fileName}</h4>
-            <div>
-              <button>Edit</button>
-              <button>Delete</button>
-            </div>
-          </li>
-        );
-      })}
-      <style jsx>{`
-        h4 {
-          font-size: 1.2rem;
-        }
-        ul {
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-        li {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-      `}</style>
-    </ul>
-  );
-}
+
 
 
 function EditorDoc({ children, currentMarkdownHandlers }) {
