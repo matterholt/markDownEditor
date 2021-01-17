@@ -8,12 +8,11 @@ const Header = () => {
       <style jsx>{`
         header {
           display: flex;
+          align-items: center;
           font-size: 10px;
           justify-content: space-between;
-          padding: 2px;
-        }
-        .header__features {
-          display: flex;
+          padding: 0 15px;
+          color: #4a7677;
         }
       `}</style>
     </header>

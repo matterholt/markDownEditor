@@ -1,106 +1,44 @@
 import React, { useState, useEffect } from "react";
 
+import DocTitle from "./DocTitle"
+import AdjustFontSize from "../docFeatures/AdjustFontSize";
+import ClearCurrentDoc from "../docFeatures/ClearCurrentDoc"
+import SaveFile from "../docFeatures/SaveFile"
 
-import { useCurrentDocState } from "../../context/DocPage-context";
 
-function DocLayoutViewSelector() {
-  const { docState, UpdateDocState } = useCurrentDocState();
-  const [docLayoutSelect, setDocLayoutSelect] = useState(
-    () => docState.viewSelector
-  );
-
-  function handleChange(e) {
-    setDocLayoutSelect(e.target.value);
-    UpdateDocState({
-      name: e.target.name,
-      value: e.target.value
-    });
-  }
-
+export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
+  const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
+  const isDisabled = currentMarkdownRaw.length === 0;
 
 
   return (
-    <div className="viewSelector_container">
-      <input
-        type="radio"
-        id="view_side"
-        name="viewSelector"
-        value="sideBySide"
-        defaultChecked={docLayoutSelect === "sideBySide"}
-        onChange={handleChange}
-      />
-      <label
-        className={docLayoutSelect === "sideBySide" ? "selectedItem" : null}
-        htmlFor="view_side"
-      >
-        Side View
-      </label>
-      <input
-        type="radio"
-        id="view_top"
-        name="viewSelector"
-        value="singleSheet"
-        defaultChecked={docLayoutSelect === "singleSheet"}
-        onChange={handleChange}
-      />
-      <label
-        className={docLayoutSelect === "singleSheet" ? "selectedItem" : null}
-        htmlFor="view_top"
-      >
-        Single
-      </label>
-      <style jsx>{`
-        label {
-          width: 100px;
-          padding: 5px;
-          text-align: center;
-        }
-        .selectedItem {
-          background-color: gray;
-          color: light-gray;
-        }
-        input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-          display: none;
-        }
+    <div className="editor__toolbar">
+      <div className="editor__actions">
+        <ClearCurrentDoc
+          setCurrentMarkdownRaw={setCurrentMarkdownRaw}
+          isDisabled={isDisabled}
+        />
+        <SaveFile
+          currentMarkdownRaw={currentMarkdownRaw}
+          isDisabled={isDisabled}
+          currentDocTitle={docTitleHandlers.currentDocTitle}
+        />
+      </div>
+      <DocTitle docTitleHandlers={docTitleHandlers} />
+      <AdjustFontSize />
 
-        .viewSelector_container {
+      <style jsx>{`
+        .editor__toolbar {
+          background-color: #4a7677;
+          border-radius: 10px;
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          justify-content: space-between;
+          padding: 0 15px;
+          grid-column 1 /span2
         }
-      `}</style>
-    </div>
-  );
-}
- 
-function FileActions({ setCurrentMarkdownRaw }) {
-  function clearAll() {
-    setCurrentMarkdownRaw([]);
-  }
-  return (
-    <div>
-      <button onClick={clearAll}>CLEAR</button>
-      <button onClick={() => console.log("new")}> New </button>
-      <button onClick={() => console.log("save")}> Save </button>
-    </div>
-  );
-}
-
-export default function EditorActions({ setCurrentMarkdownRaw }) {
-  return (
-    <div className="editor__actions">
-      <FileActions setCurrentMarkdownRaw={setCurrentMarkdownRaw} />
-      <DocLayoutViewSelector />
-
-      <style jsx>{`
         .editor__actions {
-          background-color: #f3f8f8;
           display: flex;
-          justify-content: space-between;
-          margin-bottom: 25px;
         }
       `}</style>
     </div>

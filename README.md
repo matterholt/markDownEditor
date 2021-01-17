@@ -8,6 +8,8 @@ live Link:
 
 ## Managing sate of app
 
+currently have a context that contains the saved doc and possibly other options. I'm having to update,save and edit doc in multiple places and i can see the benefit of having a state management tool such as redux
+
 ## TODO
 
 1. ~~make the order list look more like a row id more than a list~~

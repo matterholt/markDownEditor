@@ -9,24 +9,29 @@ const CurrentDocContext = createContext()
 
 
 function CurrentDocProvider({ children }) {
-    const [docState, setDocState] = useState({
-      fileName: "New Doc",
-      viewSelector: "singleSheet",
-    });
-      ;
-  
-  React.useEffect(() => {
-    console.log(docState);
+  const [docState, setDocState] = useState({
+    fontSize: 10,
+    savedFiles: [
+      { id: 0, fileName: "test", content: "sadfasdfasdf asdf asd" },
+      { id: 1, fileName: "test_2", content: "sadfasdfasdf asdf asd asdfasdfas" },
+    ],
   });
   
+  React.useEffect(() => {
+    console.log('total Doc',docState);
+  });
+  
+
+  // Updates the state fo the docs
   function UpdateDocState(event) {
     if (!event) {
       return new Error('Require a name and value attribute to update the Doc state')
     }
-    const name = event.name;
-    const value = event.value;
+    const {name,value} = event;
+
+
     setDocState({ ...docState, [name]: value })
-    console.log(docState)
+
    }
  
     return (

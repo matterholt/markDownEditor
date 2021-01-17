@@ -1,21 +1,21 @@
-import UpdateLineModal from "../general/UpdateLineModal";
+import {useCurrentDocState} from "../../context/DocPage-context"
 
-
-
-const DocSheet = ({ children}) => {
+const DocSheet = ({ children }) => {
+  const {docState} = useCurrentDocState();
+  
   return (
-    <div>
+    <div className="docSheetStyle">
       {children}
       <style jsx>{`
-        div {
+        .docSheetStyle {
           background-color: #f7f7f7;
           max-width: 75vw;
           min-width: 50%;
           min-height: 100vh;
-          padding: 5px;
+          padding: 15px;
           margin: 2px;
           border-radius: 10px;
-          font-size: 1.2em;
+          font-size: ${docState.fontSize}px;
         }
       `}</style>
     </div>
