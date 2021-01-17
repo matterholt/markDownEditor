@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import {getRandomInt} from "../../utils/randomId"
+
 import { Button } from "../general/Button"
 import DocTitle from "./DocTitle"
 
@@ -107,8 +109,6 @@ function FontSize({ updateFontSize }) {
   );
 }
 
-
-
 export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
   const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
@@ -131,7 +131,7 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
 
     // need a better way to calculate the id
     const currentDoc = {
-      id: currentlySavedFiles.length,
+      id: getRandomInt(),
       fileName: docTitleHandlers.currentDocTitle,
       content: currentMarkdownRaw,
     };
@@ -156,8 +156,6 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
 
 
   }
-
-
 
 
   return (
