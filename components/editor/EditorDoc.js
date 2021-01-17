@@ -6,9 +6,6 @@ import EditorActions from "./EditorActions"
 import FileEditsSaved from "../docFeatures/FileEditsSaved";
 
 
-
-
-
 function EditorDoc({ children, currentMarkdownHandlers }) {
   const { docState } = useCurrentDocState();
 

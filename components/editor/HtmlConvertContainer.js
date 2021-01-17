@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import { convertInput } from "../../utils/convertInput";
-import UpdateLineModal from "../general/UpdateLineModal";
+import UpdateLineModal from "../docFeatures/UpdateLineModal";
 
 export default function HtmlConvertContainer({ mdUserLine, updateSelectInput }) {
   function createInnerHtml() {
