@@ -31,7 +31,7 @@ function CurrentDocProvider({ children }) {
 
 
     setDocState({ ...docState, [name]: value })
-    console.log(docState)
+
    }
  
     return (

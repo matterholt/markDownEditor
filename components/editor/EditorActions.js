@@ -1,139 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import {getRandomInt} from "../../utils/randomId"
-
-import { Button } from "../general/Button"
-
 import DocTitle from "./DocTitle"
 import AdjustFontSize from "../docFeatures/AdjustFontSize";
-import ClearCurrentDoc from '../docFeatures/ClearCurrentDoc'
-
-import { useCurrentDocState } from "../../context/DocPage-context";
-/*
-// removed component, may use later
-function DocLayoutViewSelector() {
-  const { docState, UpdateDocState } = useCurrentDocState();
-  const [docLayoutSelect, setDocLayoutSelect] = useState(
-    () => docState.viewSelector
-  );
-
-  function handleChange(e) {
-    setDocLayoutSelect(e.target.value);
-    UpdateDocState({
-      name: e.target.name,
-      value: e.target.value
-    });
-  }
-
-  return (
-    <div className="viewSelector_container">
-      <input
-        type="radio"
-        id="view_side"
-        name="viewSelector"
-        value="sideBySide"
-        defaultChecked={docLayoutSelect === "sideBySide"}
-        onChange={handleChange}
-      />
-      <label
-        className={docLayoutSelect === "sideBySide" ? "selectedItem" : null}
-        htmlFor="view_side"
-      >
-        Side View
-      </label>
-      <input
-        type="radio"
-        id="view_top"
-        name="viewSelector"
-        value="singleSheet"
-        defaultChecked={docLayoutSelect === "singleSheet"}
-        onChange={handleChange}
-      />
-      <label
-        className={docLayoutSelect === "singleSheet" ? "selectedItem" : null}
-        htmlFor="view_top"
-      >
-        Single
-      </label>
-      <style jsx>{`
-        label {
-          width: 100px;
-          padding: 5px;
-          text-align: center;
-        }
-        .selectedItem {
-          background-color: gray;
-          color: light-gray;
-        }
-        input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-          display: none;
-        }
-
-        .viewSelector_container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-      `}</style>
-    </div>
-  );
-}
-*/
- 
-function DocSave({ saveFile, isDisabled }) {
-  return (
-    <div>
-      <Button isDisabled={isDisabled} title="Save" action={saveFile} />
-    </div>
-  );
-}
-
+import ClearCurrentDoc from "../docFeatures/ClearCurrentDoc"
+import SaveFile from "../docFeatures/SaveFile"
 
 
 export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
-  const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
   const isDisabled = currentMarkdownRaw.length === 0;
-
-
-  function saveFile() {
-    const currentlySavedFiles = docState.savedFiles;
-          if (currentMarkdownRaw.length === 0) {
-            throw new Error("Document is empty");
-          }
-    
-    const savingFileCheck = currentlySavedFiles.find((x) => x.fileName === docTitleHandlers.currentDocTitle)
-
-    // need a better way to calculate the id
-    const currentDoc = {
-      id: getRandomInt(),
-      fileName: docTitleHandlers.currentDocTitle,
-      content: currentMarkdownRaw,
-    };
-    
-    const savedListRemove = currentlySavedFiles.filter(
-      (x) => x.fileName !== currentDoc.fileName);
-    
-    if (savingFileCheck) {
-      let updatedSaveFiles = [...savedListRemove, currentDoc];
-            UpdateDocState({
-              name: "savedFiles",
-              value: updatedSaveFiles
-            });
-
-    } else {
-      UpdateDocState({
-        name: "savedFiles",
-        value: [...currentlySavedFiles, currentDoc],
-      });
-    }
-
-
-
-  }
 
 
   return (
@@ -143,10 +18,14 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
           setCurrentMarkdownRaw={setCurrentMarkdownRaw}
           isDisabled={isDisabled}
         />
-        <DocSave saveFile={saveFile} isDisabled={isDisabled} />
+        <SaveFile
+          currentMarkdownRaw={currentMarkdownRaw}
+          isDisabled={isDisabled}
+          currentDocTitle={docTitleHandlers.currentDocTitle}
+        />
       </div>
       <DocTitle docTitleHandlers={docTitleHandlers} />
-      <AdjustFontSize updateFontSize={updateFontSize} />
+      <AdjustFontSize />
 
       <style jsx>{`
         .editor__toolbar {

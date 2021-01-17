@@ -2,7 +2,7 @@ import { Button } from "../general/Button";
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 
-function AdjustFontSize({ updateFontSize }) {
+function AdjustFontSize() {
   const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
 
   function updateFontSize(action) {

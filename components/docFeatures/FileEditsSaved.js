@@ -8,7 +8,6 @@ function FileEditsSaved({ savedFiles }) {
   function removedSelectedDoc(deletedFileName) {
     const currentList = docState.savedFiles;
     const updateList = currentList.filter((x) => x.fileName != deletedFileName);
-    console.log(updateList);
     UpdateDocState({ name: "savedFiles", value: updateList });
   }
 
