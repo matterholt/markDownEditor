@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 import {getRandomInt} from "../../utils/randomId"
 
 import { Button } from "../general/Button"
+
 import DocTitle from "./DocTitle"
+import AdjustFontSize from "../docFeatures/AdjustFontSize";
+import ClearCurrentDoc from '../docFeatures/ClearCurrentDoc'
 
 import { useCurrentDocState } from "../../context/DocPage-context";
 /*
@@ -89,37 +92,12 @@ function DocSave({ saveFile, isDisabled }) {
 }
 
 
-function ClearCurrentDoc({ setCurrentMarkdownRaw, isDisabled }) {
-  function clearAll() {
-    setCurrentMarkdownRaw([]);
-  }
-  return (
-    <div>
-      <Button isDisabled={isDisabled} title="CLEAR" action={clearAll} />
-    </div>
-  );
-}
-
-function FontSize({ updateFontSize }) {
-  return (
-    <div>
-      <Button title="+" action={() => updateFontSize(1)} />
-      <Button title="-" action={() => updateFontSize(-1)} />
-    </div>
-  );
-}
 
 export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
   const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
-
   const isDisabled = currentMarkdownRaw.length === 0;
 
-
-  function updateFontSize(action) {
-    const newFontSize = docState.fontSize + action;
-    UpdateDocState({ name: "fontSize", value: newFontSize });
-  }
 
   function saveFile() {
     const currentlySavedFiles = docState.savedFiles;
@@ -168,7 +146,7 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
         <DocSave saveFile={saveFile} isDisabled={isDisabled} />
       </div>
       <DocTitle docTitleHandlers={docTitleHandlers} />
-      <FontSize updateFontSize={updateFontSize} />
+      <AdjustFontSize updateFontSize={updateFontSize} />
 
       <style jsx>{`
         .editor__toolbar {
