@@ -12,6 +12,8 @@ function VewDocController({
   setCurrentMarkdownRaw,
   updateSelectInput,
 }) {
+  const mkInputDomRef = React.useRef();
+
   function newLineOfMkDown(newRawLine) {
     const nextLineId = currentMarkdownRaw.length + 1;
     let [content] = newRawLine.split("\n");
@@ -36,8 +38,12 @@ function VewDocController({
         <MkdownOut
           currentMarkdownRaw={currentMarkdownRaw}
           updateSelectInput={updateSelectInput}
+          mkInputDomRef={mkInputDomRef}
         />
-        <MkdownInput newLineOfMkDown={newLineOfMkDown} />
+        <MkdownInput
+          newLineOfMkDown={newLineOfMkDown}
+          mkInputDomRef={mkInputDomRef}
+        />
       </DocSheet>
     );
 }

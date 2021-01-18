@@ -1,13 +1,11 @@
 
-const MkdownInput = ({newLineOfMkDown }) => {
-  const mkInputDomRef = React.createRef();
+const MkdownInput = ({ newLineOfMkDown, mkInputDomRef }) => {
 
   function changeState(e) {
     const innerInputText = e.target.innerText;
-    if (e.keyCode === 13 ) {
+    if (e.keyCode === 13) {
       // should have a id associated so able to find and update
       newLineOfMkDown(innerInputText);
-
       mkInputDomRef.current.innerText = "";
       mkInputDomRef.current.scrollIntoView({
         behavior: "smooth",
