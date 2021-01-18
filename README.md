@@ -3,7 +3,9 @@
 live Link:
 [MarkDown Editor](https://mrkdwn-editor.herokuapp.com/)
 
-
+## Setting up testing
+NEXT.js testing [example](https://github.com/vercel/next.js/tree/master/examples/with-jest)
+Only used a part of the example. did not use their jest.config.js file. want to see if needed or understand why they are in file
 
 
 ## Managing sate of app
