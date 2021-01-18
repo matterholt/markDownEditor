@@ -19,15 +19,17 @@ function UpdateLine({
 
   return (
     <div>
-      <button onClick={() => setIsEditable(false)}>Close</button>
-      <button onClick={confirmChange}>Update</button>
-      <h1>find it ${content.lineId}</h1>
       <textarea
         value={updatedLine}
         onChange={(e) => setUpdatedLine(e.target.value)}
       />
+      <button onClick={() => setIsEditable(false)}>Close</button>
+      <button onClick={confirmChange}>Update</button>
       <style jsx>{`
         div {
+          op: 0;
+          left: 0;
+          display: flex;
           position: relative;
           z-index: 100;
           background-color: gray;
@@ -40,11 +42,3 @@ function UpdateLine({
   );
 }
 export default UpdateLine;
-
-
-/*
-{
-  const isEditable = true;
-  isEditable ? <UpdateLine content={mdUserLine} /> : null;
-}
- */
