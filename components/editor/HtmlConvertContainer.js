@@ -18,18 +18,22 @@ export default function HtmlConvertContainer({
    }
   
   
+
   function updateOnBlur(e) {
+    // once clicked on another dom elem will not remove edit style
     if (!e.currentTarget.contains(e.relatedTarget)) {
+    setIsEditable(false);
       const internalText = e.target.innerText;
       setEditLine(internalText);
     }
   }
 
-  function updateOnEnter(e) {
-    setIsEditable(false);
-    if (e.keyCode === 13) {
+  function handleKey(e) {
+    const key = e.keyCode
+    if (key === 13) {
+      setIsEditable(false);
       handleDocUpdate();
-      mkInputDomRef.current.focus()
+      mkInputDomRef.current.focus();
     }
   }
   
@@ -50,14 +54,14 @@ export default function HtmlConvertContainer({
         key={mdUserLine.lineId}
         onFocus={() => setIsEditable(true)}
         onBlur={updateOnBlur}
-        onKeyUp={(e) => updateOnEnter(e)}
+        onKeyUp={(e) => handleKey(e)}
         className="mdLine__string"
         dangerouslySetInnerHTML={createInnerHtml()}
       ></div>
       <style jsx>{`
         .mdLine__string {
           cursor: ${isEditable ? "auto" : "pointer"};
-          background-color: ${isEditable ? "gray" : "none"};
+          background-color: ${isEditable ? "#d6d6d6;" : "none"};
         }
       `}</style>
     </div>

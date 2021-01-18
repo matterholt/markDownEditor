@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 
 const MkdownInput = ({ newLineOfMkDown, mkInputDomRef }) => {
 
@@ -13,6 +14,9 @@ const MkdownInput = ({ newLineOfMkDown, mkInputDomRef }) => {
       });
     }
   }
+  useEffect(() => {
+    mkInputDomRef.current.focus()
+  })
 
   return (
     <div className="inputContainer">
