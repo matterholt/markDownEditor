@@ -15,7 +15,7 @@ const DocTitle = ({ docTitleHandlers }) => {
         setFileNameStatus={setFileNameStatus}
       />
       <button onClick={() => setFileNameStatus("updateTitle")}>
-        <h2>{currentDocTitle}</h2>
+        <h2>{currentDocTitle || "NEW DOC..."}</h2>
       </button>
       <style jsx>{`
         h2 {

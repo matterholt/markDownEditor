@@ -9,7 +9,7 @@ import FileEditsSaved from "../docFeatures/FileEditsSaved";
 function EditorDoc({ children, currentMarkdownHandlers }) {
   const { docState } = useCurrentDocState();
 
-  const [currentDocTitle, setCurrentDocTitle] = useState("New Doc");
+  const [currentDocTitle, setCurrentDocTitle] = useState();
   const { savedFiles } = docState;
 
   return (
