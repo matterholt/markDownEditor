@@ -12,17 +12,11 @@ function CurrentDocProvider({ children }) {
   const [docState, setDocState] = useState({
     fontSize: 10,
     savedFiles: [
-      { id: 0, fileName: "test", content: "sadfasdfasdf asdf asd" },
-      { id: 1, fileName: "test_2", content: "sadfasdfasdf asdf asd asdfasdfas" },
+      { id: 0, fileName: "test", content: ["#testing file test","first line of test","second line of the test"] },
+      { id: 1, fileName: "test_2", content: ["## Doc Two test","another line for test","test test","last line of test"] },
     ],
   });
-  
-  React.useEffect(() => {
-    console.log('total Doc',docState);
-  });
-  
 
-  // Updates the state fo the docs
   function UpdateDocState(event) {
     if (!event) {
       return new Error('Require a name and value attribute to update the Doc state')

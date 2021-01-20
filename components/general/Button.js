@@ -1,5 +1,5 @@
-const Button = ({ isDisabled = false, action, title }) => (
-  <button disabled={isDisabled} onClick={action}>
+const Button = ({ isDisabled = false, action, title, name }) => (
+  <button disabled={isDisabled} onClick={action} name={name}>
     {title}
     <style jsx>{`
       button {

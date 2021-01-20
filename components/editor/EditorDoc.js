@@ -18,10 +18,10 @@ function EditorDoc({ children, currentMarkdownHandlers }) {
         currentMarkdownHandlers={currentMarkdownHandlers}
         docTitleHandlers={{ currentDocTitle, setCurrentDocTitle }}
       />
-      <div className="savedDoc">
+      <aside className="savedDoc">
         <FileEditsSaved savedFiles={savedFiles} />
-      </div>
-      <div className="page_container">{children}</div>
+      </aside>
+      <main className="page_container">{children}</main>
 
       <style jsx>{`
         .savedDoc {

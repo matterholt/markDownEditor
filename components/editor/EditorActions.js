@@ -26,7 +26,6 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
       </div>
       <DocTitle docTitleHandlers={docTitleHandlers} />
       <AdjustFontSize />
-
       <style jsx>{`
         .editor__toolbar {
           background-color: #4a7677;
