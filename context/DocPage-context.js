@@ -3,6 +3,7 @@ import { useState, useEffect, createContext } from 'react'
 const CurrentDocContext = createContext()
 
 
+
 function CurrentDocProvider({ children }) {
   const [docState, setDocState] = useState({
     fontSize: 10,
