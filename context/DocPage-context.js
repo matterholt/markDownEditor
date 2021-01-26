@@ -1,9 +1,4 @@
-/**
- * Context pertaining to the to state of users Documents.
- * 
- * 
- */
-import { useState, createContext } from 'react'
+import { useState, useEffect, createContext } from 'react'
 
 const CurrentDocContext = createContext()
 
@@ -17,13 +12,15 @@ function CurrentDocProvider({ children }) {
     ],
   });
 
+  useEffect(() => {
+    localStorage.setItem("docState", JSON.stringify(docState));
+  }, [docState]);
+
   function UpdateDocState(event) {
     if (!event) {
       return new Error('Require a name and value attribute to update the Doc state')
     }
     const {name,value} = event;
-
-
     setDocState({ ...docState, [name]: value })
 
    }
