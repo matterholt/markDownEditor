@@ -9,7 +9,7 @@ function FileEditsSaved() {
 
   const savedFiles = docState.savedFiles
   
-  React.useEffect(() => { console.log('list save files',docState)})
+  React.useEffect(() => { console.log("list save files", savedFiles);})
 
   function removedSelectedDoc(deletedFileName) {
     const currentList = docState.savedFiles;

@@ -7,7 +7,7 @@ const MkdownInput = ({ newLineOfMkDown, mkInputDomRef }) => {
     if (e.keyCode === 13) {
       // should have a id associated so able to find and update
       newLineOfMkDown(innerInputText);
-      mkInputDomRef.current.innerText = "";
+      mkInputDomRef.current.innerText = null;
       mkInputDomRef.current.scrollIntoView({
         behavior: "smooth",
         block: "center",
