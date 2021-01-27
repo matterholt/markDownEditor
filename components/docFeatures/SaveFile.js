@@ -1,13 +1,19 @@
+import { useEffect } from "react";
 import { useCurrentDocState } from "../../context/DocPage-context";
+import useLocalStorage from "../../Hooks/useLocalStorage"
 import { getRandomInt } from "../../utils/randomId";
 
 import {Button} from "../general/Button"
 
 function SaveFile({ currentMarkdownRaw, isDisabled, currentDocTitle }) {
-  const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
+  // const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
+  const [docState, UpdateDocState] = useLocalStorage()
+  
+
 
   function saveFile() {
     const currentlySavedFiles = docState.savedFiles;
+    console.log(currentlySavedFiles);
     if (currentMarkdownRaw.length === 0) {
       throw new Error("Document is empty");
     }

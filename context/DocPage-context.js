@@ -13,9 +13,7 @@ function CurrentDocProvider({ children }) {
     ],
   });
 
-  useEffect(() => {
-    localStorage.setItem("docState", JSON.stringify(docState));
-  }, [docState]);
+
 
   function UpdateDocState(event) {
     if (!event) {

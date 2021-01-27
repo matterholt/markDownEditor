@@ -16,7 +16,7 @@ const MkdownInput = ({ newLineOfMkDown, mkInputDomRef }) => {
   }
   useEffect(() => {
     mkInputDomRef.current.focus()
-  })
+  },[])
 
   return (
     <div className="inputContainer">

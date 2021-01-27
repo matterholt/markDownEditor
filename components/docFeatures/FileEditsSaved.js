@@ -1,9 +1,15 @@
 import { useCurrentDocState } from "../../context/DocPage-context";
 
+import useLocalStorage from "../../Hooks/useLocalStorage";
 
 
-function FileEditsSaved({ savedFiles }) {
-  const { docState, UpdateDocState } = useCurrentDocState();
+function FileEditsSaved() {
+
+  const [docState, UpdateDocState] = useLocalStorage();
+
+  const savedFiles = docState.savedFiles
+  
+  React.useEffect(() => { console.log('list save files',docState)})
 
   function removedSelectedDoc(deletedFileName) {
     const currentList = docState.savedFiles;

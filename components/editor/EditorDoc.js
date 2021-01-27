@@ -10,7 +10,7 @@ function EditorDoc({ children, currentMarkdownHandlers }) {
   const { docState } = useCurrentDocState();
 
   const [currentDocTitle, setCurrentDocTitle] = useState();
-  const { savedFiles } = docState;
+
 
   return (
     <div className="doc_container">
@@ -19,7 +19,7 @@ function EditorDoc({ children, currentMarkdownHandlers }) {
         docTitleHandlers={{ currentDocTitle, setCurrentDocTitle }}
       />
       <aside className="savedDoc">
-        <FileEditsSaved savedFiles={savedFiles} />
+        <FileEditsSaved />
       </aside>
       <main className="page_container">{children}</main>
 
