@@ -16,11 +16,11 @@ function VewDocController({
 
   function newLineOfMkDown(newRawLine) {
     const nextLineId = currentMarkdownRaw.length + 1;
-    let [content] = newRawLine.split("\n");
+    // let [content] = newRawLine.split("\n");
     const construct = {
       lineId: nextLineId,
-      lineContent: content,
-    }
+      lineContent: newRawLine,
+    };
     setCurrentMarkdownRaw([...currentMarkdownRaw, construct]);
   }
   
