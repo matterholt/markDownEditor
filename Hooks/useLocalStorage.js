@@ -5,21 +5,12 @@ const key = "docState";
 
 export default function useLocalStorage(initialValue) {
   const [state, setState] = useState(() => {
-    try {
-      const storedItem = window.localStorage.getItem("docState");
+    const storedItem = window.localStorage.getItem("docState");
+    if (storedItem) {
       return JSON.parse(storedItem);
-    } catch (error) {
-      // If error also return initialValue
-
-      console.log(error);
-
-      return initialValue;
+    } else {
+      return []
     }
-  });
-
-  //   useEffect(() => {
-  //     localStorage.setItem("docState", JSON.stringify(docState));
-  //   }, [docState]);
+  })
   return [state, setState];
 }
-

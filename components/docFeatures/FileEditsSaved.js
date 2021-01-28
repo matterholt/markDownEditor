@@ -1,15 +1,35 @@
+import { useState } from "react";
 import { useCurrentDocState } from "../../context/DocPage-context";
 
 import useLocalStorage from "../../Hooks/useLocalStorage";
 
+const SavedFiles = (file) => (
+  <li key={file.id}>
+    <h4>{file.fileName}</h4>
+    <div>
+      <button>Edit</button>
+      <button onClick={() => removedSelectedDoc(file.fileName)}>Delete</button>
+    </div>
+  </li>
+);
+
 
 function FileEditsSaved() {
 
-  const [docState, UpdateDocState] = useLocalStorage();
+  const [state, setState] = useState(() => {
+    if (typeof window !== "undefined") {
+         const storedItem = window.localStorage.getItem("docState");
+         if (storedItem) {
+           return JSON.parse(storedItem);
+         } else {
+           return [];
+         }
+    }
 
-  const savedFiles = docState.savedFiles
-  
-  React.useEffect(() => { console.log("list save files", savedFiles);})
+
+  });
+
+  React.useEffect(() => { console.log("list save files", state);})
 
   function removedSelectedDoc(deletedFileName) {
     const currentList = docState.savedFiles;
@@ -20,19 +40,12 @@ function FileEditsSaved() {
   return (
     <ul>
       <h4>Saved Files</h4>
-      {savedFiles.map((file) => {
+      {JSON.stringify(state.savedFiles)}
+      {/* {savedFiles.map((file) => {
         return (
-          <li key={file.id}>
-            <h4>{file.fileName}</h4>
-            <div>
-              <button>Edit</button>
-              <button onClick={() => removedSelectedDoc(file.fileName)}>
-                Delete
-              </button>
-            </div>
-          </li>
+          <SavedFiles file={file}/>
         );
-      })}
+      })} */}
       <style jsx>{`
         h4 {
           font-size: 1.2rem;
