@@ -6,11 +6,7 @@ const CurrentDocContext = createContext()
 
 function CurrentDocProvider({ children }) {
   const [docState, setDocState] = useState({
-    fontSize: 10,
-    savedFiles: [
-      { id: 0, fileName: "test", content: ["#testing file test","first line of test","second line of the test"] },
-      { id: 1, fileName: "test_2", content: ["## Doc Two test","another line for test","test test","last line of test"] },
-    ],
+    fontSize: 10
   });
 
 
@@ -21,7 +17,6 @@ function CurrentDocProvider({ children }) {
     }
     const {name,value} = event;
     setDocState({ ...docState, [name]: value })
-
    }
  
     return (

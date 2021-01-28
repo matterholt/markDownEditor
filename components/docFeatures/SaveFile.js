@@ -7,7 +7,7 @@ import {Button} from "../general/Button"
 
 function SaveFile({ currentMarkdownRaw, isDisabled, currentDocTitle }) {
   // const { docState, UpdateDocState } = useCurrentDocState(); //one place for context
-  const [docState, UpdateDocState] = useLocalStorage()
+  // const [docState, UpdateDocState] = useLocalStorage()
   
 
 
