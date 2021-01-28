@@ -1,36 +1,42 @@
-import { useEffect } from 'react'
+import {useState, useEffect } from 'react'
 
 const MkdownInput = ({ newLineOfMkDown, mkInputDomRef }) => {
+  const [inlineContent, setInlineContent] = useState('')
 
   function changeState(e) {
-    const innerInputText = e.target.innerText;
+ 
     if (e.keyCode === 13) {
       // should have a id associated so able to find and update
-      newLineOfMkDown(innerInputText);
-      mkInputDomRef.current.innerText = "";
+      newLineOfMkDown(inlineContent);
+      setInlineContent("");
       mkInputDomRef.current.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
     }
   }
+
+
   useEffect(() => {
-    mkInputDomRef.current.focus()
-  })
+    mkInputDomRef.current.focus();
+    console.log(inlineContent);
+  }, [mkInputDomRef]);
 
   return (
     <div className="inputContainer">
-      <pre
+      <input
         ref={mkInputDomRef}
         onKeyDown={(e) => changeState(e)}
         contentEditable="true"
+        value={inlineContent}
+        onChange={(e) => setInlineContent(e.target.value)}
       />
       <style jsx>{`
         .inputContainer {
-          border-top: 1px solid black;
+          display: grid;
           font-size: 1em;
         }
-        pre {
+        input {
           padding: 5px;
           margin: 0;
           min-height: inherit;
