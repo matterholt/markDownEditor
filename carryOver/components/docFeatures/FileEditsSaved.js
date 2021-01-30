@@ -1,4 +1,5 @@
-import { useCurrentDocState } from "../../context/DocPage-context";
+import { useCurrentDocState } from "../../../client/src/context/DocPage-context";
+
 
 
 
@@ -27,21 +28,6 @@ function FileEditsSaved({ savedFiles }) {
           </li>
         );
       })}
-      <style jsx>{`
-        h4 {
-          font-size: 1.2rem;
-        }
-        ul {
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-        li {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-      `}</style>
     </ul>
   );
 }
