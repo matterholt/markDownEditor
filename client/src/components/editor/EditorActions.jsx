@@ -15,7 +15,7 @@ const editor__toolbar = css`
           justify-content: space-between;
           align-items: center;
           padding: 0 15px;
-          grid-column 1 /span2
+          grid-column: 1 /span2;
 
 `;
 

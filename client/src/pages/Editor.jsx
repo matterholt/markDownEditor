@@ -1,8 +1,12 @@
 import React, { useState, useEffect, Children } from "react";
 
+import {DocumentOptionProvider, useCurrentDocOptions  } from '../context/docOption_context'
+
 import Layout from "../components/general/Layout"
 import EditorDoc from "../components/editor/EditorDoc";
 import VewDocController from "../components/editor/VewDocController";
+
+
 
 
 const Editor = () => {
@@ -10,7 +14,7 @@ const Editor = () => {
 
   return (
     <Layout>
-     
+      <DocumentOptionProvider>
         <EditorDoc
           currentMarkdownHandlers={{
             currentMarkdownRaw,
@@ -22,6 +26,7 @@ const Editor = () => {
             setCurrentMarkdownRaw={setCurrentMarkdownRaw}
           />
         </EditorDoc>
+     </DocumentOptionProvider>
   
     </Layout>
   );

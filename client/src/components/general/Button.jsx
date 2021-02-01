@@ -11,17 +11,15 @@ const button =css`{
         padding: 5px;
         border: none;
         width: 55px;
-    }
-
+    
 &:hover {
     background-color: #b9caca;
 }
-
 &:active {
     color: gray;
     background-color: white;
 }
-
+}
 `
 
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react";
 
-
+import { useCurrentDocOptions } from "../../context/docOption_context";
 
 const docSheetStyle = css`
   background-color: #f7f7f7;
@@ -16,10 +16,16 @@ const docSheetStyle = css`
 const Temp_style={fontSize:`${12}px`}
 
 const DocSheet = ({ children }) => {
+  const { docOption } = useCurrentDocOptions();
 
   
   return (
-    <div css={docSheetStyle} >
+    <div
+      css={css`
+        ${docSheetStyle};
+        font-size: ${docOption.fontSize}px;
+      `}
+    >
       {children}
     </div>
   );
