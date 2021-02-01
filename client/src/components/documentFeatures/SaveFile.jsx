@@ -8,14 +8,8 @@ import { Button } from "../general/Button"
 
 
 
-
-
-
-
-
-
-function SaveFile({ currentMarkdownRaw, isDisabled, currentDocTitle }) {
-    const [localSavedFiles, setLocalSavedFiles] = useLocalStorage("savedFiles");
+function SaveCurrentFile({savedFilesHandler, currentMarkdownRaw, isDisabled, currentDocTitle }) {
+    const {localSavedFiles, setLocalSavedFiles} = savedFilesHandler;
 
 
 
@@ -57,11 +51,10 @@ function SaveFile({ currentMarkdownRaw, isDisabled, currentDocTitle }) {
 
   return (
     <div>
-      {JSON.stringify(localSavedFiles)}
       <Button isDisabled={isDisabled} title="Save" action={saveFile} />
     </div>
   );
 }
 
 
-export default SaveFile;
+export default SaveCurrentFile;

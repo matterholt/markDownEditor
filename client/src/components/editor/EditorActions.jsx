@@ -9,13 +9,13 @@ import SaveFile from "../documentFeatures/SaveFile"
 
 
 const editor__toolbar = css`
-          background-color: #4a7677;
-          border-radius: 10px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 15px;
-          grid-column: 1 /span2;
+  background-color: #4a7677;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  grid-column: 1 /span2;
 
 `;
 
@@ -23,7 +23,7 @@ const editor__actions = css`
   display: flex;
 `;
 
-export default function EditorActions({ currentMarkdownHandlers, docTitleHandlers }) {
+export default function EditorActions({savedFilesHandler, currentMarkdownHandlers, docTitleHandlers }) {
   const { currentMarkdownRaw, setCurrentMarkdownRaw } = currentMarkdownHandlers;
   const isDisabled = currentMarkdownRaw.length === 0;
 
@@ -36,6 +36,7 @@ export default function EditorActions({ currentMarkdownHandlers, docTitleHandler
           isDisabled={isDisabled}
         />
         <SaveFile
+          savedFilesHandler={savedFilesHandler}
           currentMarkdownRaw={currentMarkdownRaw}
           isDisabled={isDisabled}
           currentDocTitle={docTitleHandlers.currentDocTitle}

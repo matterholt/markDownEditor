@@ -2,12 +2,10 @@ import React, { useState } from "react";
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 
-
-
 import EditorActions from "./EditorActions";
-import SavedFiles from "../documentFeatures/SavedFiles";
+import SavedFilesList from "../documentFeatures/SavedFilesList";
 
-
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const savedDoc = css`
   grid-row: 2;
@@ -32,21 +30,37 @@ const page_container = css`
   grid-column: 2;
 `;
 
+
+// update doc File
+// clear current file
+// update file name
+
+
+// save current file
+// delete saved files
+// edit a saved file
+
+// adjust Font size
+
 function EditorDoc({ children, currentMarkdownHandlers }) {
  
+  const [localSavedFiles, setLocalSavedFiles] = useLocalStorage("savedFiles");
 
   const [currentDocTitle, setCurrentDocTitle] = useState();
-  const savedFiles  = [];
 
   return (
     <div css={doc_container}>
       <EditorActions
         currentMarkdownHandlers={currentMarkdownHandlers}
         docTitleHandlers={{ currentDocTitle, setCurrentDocTitle }}
+        savedFilesHandler={{ localSavedFiles, setLocalSavedFiles }}
       />
-      <aside css={savedDoc}>
-        <SavedFiles savedFiles={savedFiles} />
-      </aside>
+      <div css={savedDoc}>
+        <SavedFilesList
+          localSavedFiles={localSavedFiles}
+          savedFilesHandler={{ localSavedFiles, setLocalSavedFiles }}
+        />
+      </div>
       <main css={page_container}>{children}</main>
     </div>
   );
