@@ -1,7 +1,8 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState} from 'react'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 
+import {useLocalStorage } from "../../hooks/useLocalStorage"
 
 const SavedFiles = ({ saveFileName, removedSelectedDoc }) => {
   return (
@@ -15,22 +16,26 @@ const SavedFiles = ({ saveFileName, removedSelectedDoc }) => {
   );
 };
 
+
+
 function FileEditsSaved() {
-  const [state, setState] = useState([]);
-  const localKey = "savedFiles";
+  const [localSavedFiles, setLocalSavedFiles] = useState(
+[]
+  );
+
 
   function removedSelectedDoc(deletedFileName) {
     const updateList = state.filter((x) => x.fileName != deletedFileName);
-    setState(updateList);
+    setLocalSavedFiles(setLocalSavedFiles);
   }
 
-  if (!state) {
+  if (localSavedFiles.length === 0) {
     return <h3>No Saved Files</h3>;
   } else {
     return (
       <ul>
         <h4>Saved Files</h4>
-        {state.map((file) => {
+        {localSavedFiles.map((file) => {
           return (
             <SavedFiles
               key={file.id}

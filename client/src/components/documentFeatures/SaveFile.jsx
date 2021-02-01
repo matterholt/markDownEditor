@@ -1,13 +1,27 @@
 import React ,{useState }from 'react'
+
+import {useLocalStorage } from "../../hooks/useLocalStorage"
+
 import { getRandomInt } from "../../utils/randomId";
 
-import {Button} from "../general/Button"
+import { Button } from "../general/Button"
+
+
+
+
+
+
+
+
 
 function SaveFile({ currentMarkdownRaw, isDisabled, currentDocTitle }) {
-  const { docState, UpdateDocState } = useState(); //one place for context
+    const [localSavedFiles, setLocalSavedFiles] = useLocalStorage("savedFiles");
+
+
 
   function saveFile() {
-    const currentlySavedFiles = docState.savedFiles;
+    // use Reducer to remove logic???
+    const currentlySavedFiles = localSavedFiles;
     if (currentMarkdownRaw.length === 0) {
       throw new Error("Document is empty");
     }
@@ -23,26 +37,27 @@ function SaveFile({ currentMarkdownRaw, isDisabled, currentDocTitle }) {
       content: currentMarkdownRaw,
     };
 
+    // able to just delete the file
     const savedListRemove = currentlySavedFiles.filter(
       (x) => x.fileName !== currentDoc.fileName
-    );
+    ); 
+
+    // make simpler idea
+    // const updateList = savedListRemove ? localSavedFiles
+
 
     if (savingFileCheck) {
-      let updatedSaveFiles = [...savedListRemove, currentDoc];
-      UpdateDocState({
-        name: "savedFiles",
-        value: updatedSaveFiles,
-      });
+      setLocalSavedFiles([...savedListRemove, currentDoc]);
     } else {
-      UpdateDocState({
-        name: "savedFiles",
-        value: [...currentlySavedFiles, currentDoc],
-      });
+      setLocalSavedFiles([...localSavedFiles, currentDoc]);
     }
   }
 
+  React.useEffect(() => console.log(localSavedFiles));
+
   return (
     <div>
+      {JSON.stringify(localSavedFiles)}
       <Button isDisabled={isDisabled} title="Save" action={saveFile} />
     </div>
   );
