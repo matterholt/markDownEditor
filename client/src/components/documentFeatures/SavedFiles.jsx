@@ -19,49 +19,50 @@ const SavedFiles = ({ saveFileName, removedSelectedDoc }) => {
 
 
 function FileEditsSaved() {
-  const [localSavedFiles, setLocalSavedFiles] = useState(
-[]
-  );
+  const [localSavedFiles, setLocalSavedFiles] = useLocalStorage("savedFiles");
 
 
   function removedSelectedDoc(deletedFileName) {
-    const updateList = state.filter((x) => x.fileName != deletedFileName);
-    setLocalSavedFiles(setLocalSavedFiles);
+    const updateList = localSavedFiles.filter(
+      (x) => x.fileName != deletedFileName
+    );
+    setLocalSavedFiles(updateList);
   }
 
-  if (localSavedFiles.length === 0) {
-    return <h3>No Saved Files</h3>;
-  } else {
-    return (
-      <ul>
-        <h4>Saved Files</h4>
-        {localSavedFiles.map((file) => {
-          return (
-            <SavedFiles
-              key={file.id}
-              removedSelectedDoc={removedSelectedDoc}
-              saveFileName={file.fileName}
-            />
-          );
-        })}
-        <style jsx>{`
-          h4 {
-            font-size: 1.2rem;
-          }
-          ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-          }
-          li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-        `}</style>
-      </ul>
-    );
-  }
+    if (localSavedFiles.length === 0) {
+      return <h3>No Saved Files</h3>;
+    } else {
+      return (
+        <ul>
+        
+          <h4>Saved Files</h4>
+          {localSavedFiles.map((file) => {
+            return (
+              <SavedFiles
+                key={file.id}
+                removedSelectedDoc={removedSelectedDoc}
+                saveFileName={file.fileName}
+              />
+            );
+          })}
+          <style jsx>{`
+            h4 {
+              font-size: 1.2rem;
+            }
+            ul {
+              padding: 0;
+              margin: 0;
+              list-style: none;
+            }
+            li {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+          `}</style>
+        </ul>
+      );
+    }
 }
 
 export default FileEditsSaved;
