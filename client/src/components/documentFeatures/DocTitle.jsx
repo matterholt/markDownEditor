@@ -8,15 +8,15 @@ const subTitle = css`
   margin: 0;
   padding: 10px 0;
   font-weight: 900;
-  color: #fff;
+  color: #382b2b;
 `;
 const Button = css`
   border: none;
-  background: none;
-  border-radius: 5px;
+  background: #82a0a1;
   cursor: pointer;
   font-size: 2rem;
   width: max-content;
+  
 `;
 
 const DocTitle = ({ docTitleHandlers }) => {

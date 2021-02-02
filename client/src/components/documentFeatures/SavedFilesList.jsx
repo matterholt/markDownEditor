@@ -2,15 +2,32 @@ import React, { useEffect, useState} from 'react'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 
-import {useLocalStorage } from "../../hooks/useLocalStorage"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+
+const unOrderList = css`
+  padding: 0;
+  margin: 0;
+  list-style: none;
+`;
+const listItem = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const title = css`
+  font-weight: 900;
+  text-align:center;
+  font-size:10px;
+`
+
 
 const SavedFiles = ({ saveFileName, removedSelectedDoc }) => {
   return (
-    <li>
-      <h4>{saveFileName}</h4>
+    <li css={listItem}>
+      <h4 >{saveFileName}</h4>
       <div>
-        <button>Edit</button>
-        <button onClick={() => removedSelectedDoc(saveFileName)}>Delete</button>
+        <button>🖊️</button>
+        <button onClick={() => removedSelectedDoc(saveFileName)}>❌</button>
       </div>
     </li>
   );
@@ -29,27 +46,20 @@ function SavedFilesList({ savedFilesHandler }) {
   }
 
   if (localSavedFiles.length === 0) {
-    return <h3>No Saved Files</h3>;
-  } else {
     return (
-      <ul
+      <h3
         css={css`
-          h4 {
-            font-size: 1.2rem;
-          }
-          ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-          }
-          li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
+          ${title} ;
+          color: gray;
         `}
       >
-        <h4>Saved Files</h4>
+        No Saved Files
+      </h3>
+    );
+  } else {
+    return (
+      <ul css={unOrderList}>
+        <h4 css={title}>Saved Files</h4>
         {localSavedFiles.map((file) => {
           return (
             <SavedFiles

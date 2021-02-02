@@ -13,7 +13,6 @@ const docSheetStyle = css`
   margin: 2px;
   border-radius: 10px;
 `;
-const Temp_style={fontSize:`${12}px`}
 
 const DocSheet = ({ children }) => {
   const { docOption } = useCurrentDocOptions();

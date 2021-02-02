@@ -16,14 +16,12 @@ const savedDoc = css`
 const doc_container = css`
   margin: 10px;
   display: grid;
-  grid-template-columns: 15% 1fr 15%;
-  grid-template-rows: 50px 1fr;
+  grid-template-columns: 20% 1fr 20%;
+  grid-template-rows: auto  1fr;
   min-height: 100vh;
 `;
 const page_container = css`
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
+
   font-size: 10px;
   margin: 15px;
   grid-row: 2;
