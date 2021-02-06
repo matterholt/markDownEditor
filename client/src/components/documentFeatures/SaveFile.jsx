@@ -1,7 +1,5 @@
 import React ,{useState }from 'react'
 
-import {useLocalStorage } from "../../hooks/useLocalStorage"
-
 import { getRandomInt } from "../../utils/randomId";
 
 import { Button } from "../general/Button"

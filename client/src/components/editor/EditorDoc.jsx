@@ -46,6 +46,17 @@ function EditorDoc({ children, currentMarkdownHandlers }) {
 
   const [currentDocTitle, setCurrentDocTitle] = useState();
 
+  function editASavedFile( docId) {
+    //
+    console.log(currentDocTitle);
+    setCurrentDocTitle(currentDocTitle);
+    const documentToEdit = localSavedFiles.find((x) => x.fileName === docId);
+    console.log(documentToEdit);
+    //
+    setCurrentDocTitle(documentToEdit.fileName);
+    
+  }
+
   return (
     <div css={doc_container}>
       <EditorActions
@@ -55,6 +66,7 @@ function EditorDoc({ children, currentMarkdownHandlers }) {
       />
       <div css={savedDoc}>
         <SavedFilesList
+          editASavedFile={editASavedFile}
           localSavedFiles={localSavedFiles}
           savedFilesHandler={{ localSavedFiles, setLocalSavedFiles }}
         />

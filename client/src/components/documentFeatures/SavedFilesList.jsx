@@ -1,8 +1,6 @@
-import React, { useEffect, useState} from 'react'
+import React from 'react'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
-
-import { useLocalStorage } from "../../hooks/useLocalStorage"
 
 const unOrderList = css`
   padding: 0;
@@ -21,12 +19,12 @@ const title = css`
 `
 
 
-const SavedFiles = ({ saveFileName, removedSelectedDoc }) => {
+const SavedFiles = ({ editASavedFile, saveFileName, removedSelectedDoc }) => {
   return (
     <li css={listItem}>
-      <h4 >{saveFileName}</h4>
+      <h4>{saveFileName}</h4>
       <div>
-        <button>🖊️</button>
+        <button onClick={() => editASavedFile(saveFileName)}>🖊️</button>
         <button onClick={() => removedSelectedDoc(saveFileName)}>❌</button>
       </div>
     </li>
@@ -35,8 +33,8 @@ const SavedFiles = ({ saveFileName, removedSelectedDoc }) => {
 
 
 
-function SavedFilesList({ savedFilesHandler }) {
-    const { localSavedFiles, setLocalSavedFiles } = savedFilesHandler;
+function SavedFilesList({ editASavedFile,savedFilesHandler }) {
+  const { localSavedFiles, setLocalSavedFiles } = savedFilesHandler;
 
   function removedSelectedDoc(deletedFileName) {
     const updateList = localSavedFiles.filter(
@@ -49,7 +47,7 @@ function SavedFilesList({ savedFilesHandler }) {
     return (
       <h3
         css={css`
-          ${title} ;
+          ${title};
           color: gray;
         `}
       >
@@ -64,6 +62,7 @@ function SavedFilesList({ savedFilesHandler }) {
           return (
             <SavedFiles
               key={file.id}
+              editASavedFile={editASavedFile}
               removedSelectedDoc={removedSelectedDoc}
               saveFileName={file.fileName}
             />
